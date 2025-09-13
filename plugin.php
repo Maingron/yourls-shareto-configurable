@@ -15,7 +15,7 @@ yourls_add_action( 'plugins_loaded', 'maingron_shareto_confable_add_settings' );
 yourls_add_action( 'share_links', 'maingron_shareto_confable_shareto_init');
 
 
-foreach(['shareto_qr', 'shareto_linkedin', 'shareto_tumblr', 'shareto_custom1', 'shareto_custom2', 'shareto_custom3', 'shareto_custom4', 'shareto_custom5'] as $st_name) {
+foreach(['shareto_qr', 'shareto_linkedin', 'shareto_whatsapp', 'shareto_tumblr', 'shareto_custom1', 'shareto_custom2', 'shareto_custom3', 'shareto_custom4', 'shareto_custom5'] as $st_name) {
 	$myEnable = yourls_get_option($st_name . '_enable', false);
 	if($myEnable) {
 		if(function_exists('maingron_shareto_confable_' . $st_name)) {
@@ -45,6 +45,10 @@ function maingron_shareto_confable_get_setting( $setting, $fallback, $forceDefau
 		'shareto_tumblr_title' => 'Tumblr',
 		'shareto_tumblr_platformLinkTemplate' => 'https://www.tumblr.com/widgets/share/tool?canonicalUrl=%shortUrl%&title=%title%',
 		'shareto_tumblr_icon' => YOURLS_PLUGINURL . '/' . yourls_plugin_basename(__DIR__) . "/img/tumblr.svg",
+		'shareto_whatsapp_enable' => false,
+		'shareto_whatsapp_title' => 'WhatsApp',
+		'shareto_whatsapp_platformLinkTemplate' => 'https://api.whatsapp.com/send?text=%shortUrl%',
+		'shareto_whatsapp_icon' => YOURLS_PLUGINURL . '/' . yourls_plugin_basename(__DIR__) . "/img/whatsapp.svg",
 	];
 	foreach(["custom1", "custom2", "custom3", "custom4", "custom5"] as $customShare) {
 		$defaults['shareto_' . $customShare . '_enable'] = false;
@@ -66,7 +70,7 @@ function maingron_shareto_confable_add_settings() {
 }
 
 function maingron_shareto_confable_settings_page() {
-	$maingron_shareto_custom_shares = ['shareto_qr', 'shareto_linkedin', 'shareto_tumblr', 'shareto_custom1', 'shareto_custom2', 'shareto_custom3', 'shareto_custom4', 'shareto_custom5'];
+	$maingron_shareto_custom_shares = ['shareto_qr', 'shareto_linkedin', 'shareto_whatsapp', 'shareto_tumblr', 'shareto_custom1', 'shareto_custom2', 'shareto_custom3', 'shareto_custom4', 'shareto_custom5'];
 
 	// Check if form was submitted
 	if( isset( $_POST['shareto_timestamp'] ) ) {
@@ -168,7 +172,7 @@ HTML;
 
 
 function maingron_shareto_confable_settings_update() {
-	$maingron_shareto_custom_shares = ['shareto_qr', 'shareto_linkedin', 'shareto_tumblr', 'shareto_custom1', 'shareto_custom2', 'shareto_custom3', 'shareto_custom4', 'shareto_custom5'];
+	$maingron_shareto_custom_shares = ['shareto_qr', 'shareto_linkedin', 'shareto_whatsapp', 'shareto_tumblr', 'shareto_custom1', 'shareto_custom2', 'shareto_custom3', 'shareto_custom4', 'shareto_custom5'];
 
 	$shareto_confable_settings = [
 		'shareto_timestamp'   => (int)$_POST['shareto_timestamp'] ?? 0,
@@ -311,12 +315,16 @@ function maingron_shareto_confable_shareto_qr($args) {
 	]);
 }
 
-function maingron_shareto_confable_shareto_linkedin( $args) {
+function maingron_shareto_confable_shareto_linkedin( $args ) {
 	maingron_shareto_confable_shareto_custom( 'linkedin', $args );
 }
 
-function maingron_shareto_confable_shareto_tumblr( $args) {
+function maingron_shareto_confable_shareto_tumblr( $args ) {
 	maingron_shareto_confable_shareto_custom( 'tumblr', $args );
+}
+
+function maingron_shareto_confable_shareto_whatsapp( $args ) {
+	maingron_shareto_confable_shareto_custom( 'whatsapp', $args );
 }
 
 function maingron_shareto_confable_shareto_custom1( $args ) {
