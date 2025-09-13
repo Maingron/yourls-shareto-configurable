@@ -36,7 +36,7 @@ function maingron_shareto_confable_get_setting( $setting, $fallback, $forceDefau
 	}
 	$defaults = [
 		'shareto_disable' => false,
-		'shareto_qr_enable' => false,
+		'shareto_qr_enable' => true,
 		'shareto_qr_title' => 'QR Code',
 		'shareto_qr_platform_link_template' => 'https://api.qrserver.com/v1/create-qr-code/?data=%shortUrl%&size=%window_x%x%window_y%',
 		'shareto_qr_icon' => YOURLS_PLUGINURL . '/' . yourls_plugin_basename(__DIR__) . "/img/qr_code.png",
