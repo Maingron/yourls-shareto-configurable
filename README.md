@@ -2,7 +2,7 @@
 
 [![YOURLS Plugin](https://img.shields.io/badge/YOURLS-Plugin-brightgreen)](https://yourls.org/)
 
-![](icon.png)
+![](logo.png)
 
 Plugin Page: [Maingron/yourls-shareto-configurable](https://github.com/Maingron/yourls-shareto-configurable)
 
