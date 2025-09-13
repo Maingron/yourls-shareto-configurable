@@ -38,30 +38,30 @@ function maingron_shareto_confable_get_setting( $setting, $fallback, $forceDefau
 		'shareto_disable' => false,
 		'shareto_qr_enable' => false,
 		'shareto_qr_title' => 'QR Code',
-		'shareto_qr_platformLinkTemplate' => 'https://api.qrserver.com/v1/create-qr-code/?data=%shortUrl%&size=%windowX%x%windowY%',
+		'shareto_qr_platform_link_template' => 'https://api.qrserver.com/v1/create-qr-code/?data=%shortUrl%&size=%window_x%x%window_y%',
 		'shareto_qr_icon' => YOURLS_PLUGINURL . '/' . yourls_plugin_basename(__DIR__) . "/img/qr_code.png",
-		'shareto_qr_windowX' => 350,
-		'shareto_qr_windowY' => 350,
+		'shareto_qr_window_x' => 350,
+		'shareto_qr_window_y' => 350,
 		'shareto_linkedin_enable' => false,
 		'shareto_linkedin_title' => 'LinkedIn',
-		'shareto_linkedin_platformLinkTemplate' => 'https://www.linkedin.com/sharing/share-offsite/?url=%shortUrl%',
+		'shareto_linkedin_platform_link_template' => 'https://www.linkedin.com/sharing/share-offsite/?url=%shortUrl%',
 		'shareto_linkedin_icon' => YOURLS_PLUGINURL . '/' . yourls_plugin_basename(__DIR__) . "/img/linkedin.png",
 		'shareto_tumblr_enable' => false,
 		'shareto_tumblr_title' => 'Tumblr',
-		'shareto_tumblr_platformLinkTemplate' => 'https://www.tumblr.com/widgets/share/tool?canonicalUrl=%shortUrl%&title=%title%',
+		'shareto_tumblr_platform_link_template' => 'https://www.tumblr.com/widgets/share/tool?canonicalUrl=%shortUrl%&title=%title%',
 		'shareto_tumblr_icon' => YOURLS_PLUGINURL . '/' . yourls_plugin_basename(__DIR__) . "/img/tumblr.svg",
 		'shareto_whatsapp_enable' => false,
 		'shareto_whatsapp_title' => 'WhatsApp',
-		'shareto_whatsapp_platformLinkTemplate' => 'https://api.whatsapp.com/send?text=%shortUrl%',
+		'shareto_whatsapp_platform_link_template' => 'https://api.whatsapp.com/send?text=%shortUrl%',
 		'shareto_whatsapp_icon' => YOURLS_PLUGINURL . '/' . yourls_plugin_basename(__DIR__) . "/img/whatsapp.svg",
 	];
 	foreach(["custom1", "custom2", "custom3", "custom4", "custom5"] as $customShare) {
 		$defaults['shareto_' . $customShare . '_enable'] = false;
 		$defaults['shareto_' . $customShare . '_title'] = 'Custom Title';
-		$defaults['shareto_' . $customShare . '_platformLinkTemplate'] = YOURLS_SITE . "/%shortUrl%+";
+		$defaults['shareto_' . $customShare . '_platform_link_template'] = YOURLS_SITE . "/%shortUrl%+";
 		$defaults['shareto_' . $customShare . '_icon'] = YOURLS_PLUGINURL . '/' . yourls_plugin_basename(__DIR__) . "/img/transparent.png";
-		$defaults['shareto_' . $customShare . '_windowX'] = '';
-		$defaults['shareto_' . $customShare . '_windowY'] = '';
+		$defaults['shareto_' . $customShare . '_window_x'] = '';
+		$defaults['shareto_' . $customShare . '_window_y'] = '';
 	}
 	if($forceDefault) {
 		return $defaults[$setting] ?? null;
@@ -104,10 +104,10 @@ function maingron_shareto_confable_settings_page() {
 	foreach($maingron_shareto_custom_shares as $st_name) {
 		${$st_name . '_enable'} = maingron_shareto_confable_get_setting($st_name . '_enable', false) ? 'checked' : '';
 		${$st_name . '_title'} = maingron_shareto_confable_get_setting($st_name . '_title', 'Title');
-		${$st_name . '_platformLinkTemplate'} = maingron_shareto_confable_get_setting($st_name . '_platformLinkTemplate', YOURLS_SITE . "/%shortUrl%+") ?? '';
+		${$st_name . '_platform_link_template'} = maingron_shareto_confable_get_setting($st_name . '_platform_link_template', YOURLS_SITE . "/%shortUrl%+") ?? '';
 		${$st_name . '_icon'} = maingron_shareto_confable_get_setting($st_name . '_icon', YOURLS_PLUGINURL . '/' . yourls_plugin_basename(__DIR__) . "/img/transparent.png") ?? '';
-		${$st_name . '_windowX'} = maingron_shareto_confable_get_setting($st_name . '_windowX', '') ?? '';
-		${$st_name . '_windowY'} = maingron_shareto_confable_get_setting($st_name . '_windowY', '') ?? ''; 
+		${$st_name . '_window_x'} = maingron_shareto_confable_get_setting($st_name . '_window_x', '') ?? '';
+		${$st_name . '_window_y'} = maingron_shareto_confable_get_setting($st_name . '_window_y', '') ?? ''; 
 	}
 
 	echo <<<HTML
@@ -145,8 +145,8 @@ function maingron_shareto_confable_settings_page() {
 							<code>%shortUrl%</code> - The shortened URL<br>
 							<code>%longUrl%</code> - The original URL<br>
 							<code>%title%</code> - The title of the link (if any)<br>
-							<code>%windowX%</code> - Width of the popup window (if any)<br>
-							<code>%windowY%</code> - Height of the popup window (if any)<br>
+							<code>%window_x%</code> - Width of the popup window (if any)<br>
+							<code>%window_y%</code> - Height of the popup window (if any)<br>
 						</p>
 					</div>
 				</details>
@@ -162,16 +162,16 @@ HTML;
 		echo 		"<input type='text' name='${st_name}_title' value='${$st_name . '_title'}' />";
 		echo 	"</label><br><br>";
 		echo	 "<label>Platform Link Template";
-		echo 		"<input type='text' name='${st_name}_platformLinkTemplate' value='${$st_name . '_platformLinkTemplate'}' />";
+		echo 		"<input type='text' name='${st_name}_platform_link_template' value='${$st_name . '_platform_link_template'}' />";
 		echo 	"</label><br><br>";
 		echo	 "<label>Icon URL";
 		echo 		"<input type='text' name='${st_name}_icon' value='${$st_name . '_icon'}' />";
 		echo 	"</label><br><br>";
 		echo	 "<label>Popup Window Width (px)";
-		echo 		"<input type='number' name='${st_name}_windowX' value='${$st_name . '_windowX'}' />";
+		echo 		"<input type='number' name='${st_name}_window_x' value='${$st_name . '_window_x'}' />";
 		echo 	"</label><br><br>";
 		echo	 "<label>Popup Window Height (px)";
-		echo 		"<input type='number' name='${st_name}_windowY' value='${$st_name . '_windowY'}' />";
+		echo 		"<input type='number' name='${st_name}_window_y' value='${$st_name . '_window_y'}' />";
 		echo 	"</label>";
 		echo "</fieldset><br><br>";
 	}
@@ -196,15 +196,15 @@ function maingron_shareto_confable_settings_update() {
 		// $shareto_confable_settings[${$st_name . '_enable'}] = isset($_POST["${$st_name . '_enable'}"]);
 		$shareto_confable_settings[$st_name . '_enable'] = isset($_POST[$st_name . '_enable']);
 		$shareto_confable_settings[$st_name . '_title'] = $_POST[$st_name . '_title'] ?? 'Title';
-		$shareto_confable_settings[$st_name . '_platformLinkTemplate'] = $_POST[$st_name . '_platformLinkTemplate'] ?? YOURLS_SITE . "/%shortUrl%+";
+		$shareto_confable_settings[$st_name . '_platform_link_template'] = $_POST[$st_name . '_platform_link_template'] ?? YOURLS_SITE . "/%shortUrl%+";
 		$shareto_confable_settings[$st_name . '_icon'] = $_POST[$st_name . '_icon'] ?? YOURLS_PLUGINURL . '/' . yourls_plugin_basename(__DIR__) . "/img/transparent.png";
-		$shareto_confable_settings[$st_name . '_windowX'] = $_POST[$st_name . '_windowX'] ?? '';
-		$shareto_confable_settings[$st_name . '_windowY'] = $_POST[$st_name . '_windowY'] ?? '';
+		$shareto_confable_settings[$st_name . '_window_x'] = $_POST[$st_name . '_window_x'] ?? '';
+		$shareto_confable_settings[$st_name . '_window_y'] = $_POST[$st_name . '_window_y'] ?? '';
 	}
 
 	foreach( $shareto_confable_settings as $key => $value ) {
 		if(empty($value) || $value == maingron_shareto_confable_get_setting($key, null, true)) {
-			if((strpos($key, '_icon') !== false || strpos($key, '_title') !== false) || strpos($key, '_windowX') !== false || strpos($key, '_windowY') !== false || strpos($key, '_platformLinkTemplate') !== false) {
+			if((strpos($key, '_icon') !== false || strpos($key, '_title') !== false) || strpos($key, '_window_x') !== false || strpos($key, '_window_y') !== false || strpos($key, '_platform_link_template') !== false) {
 				yourls_delete_option( $key );
 				continue;
 			}
@@ -239,10 +239,10 @@ function maingron_shareto_confable_shareto_javascript($args) {
 		'enable' => false,
 		'title' => 'Share to ???',
 		'key' => 'maingron_shareto_confable_shareto_undefined',
-		'platformLinkTemplate' => '#',
+		'platform_link_template' => '#',
 		'icon' => YOURLS_PLUGINURL . '/' . yourls_plugin_basename(__DIR__) . "/img/transparent.png",
-		'windowX' => '',
-		'windowY' => '',
+		'window_x' => '',
+		'window_y' => '',
 	], $args);
 
 	echo <<<HTML
@@ -252,11 +252,11 @@ function maingron_shareto_confable_shareto_javascript($args) {
 			{
 				"enable": "$args[enable]",
 				"title": "$args[title]",
-				"platformLinkTemplate": "$args[platformLinkTemplate]",
+				"platform_link_template": "$args[platform_link_template]",
 				"key": "$args[key]",
 				"icon": "$args[icon]",
-				"windowX": "$args[windowX]",
-				"windowY": "$args[windowY]",
+				"window_x": "$args[window_x]",
+				"window_y": "$args[window_y]",
 			}
 		);
 
@@ -265,21 +265,21 @@ function maingron_shareto_confable_shareto_javascript($args) {
 			let longUrl = document.querySelector("#origlink").value;
 			maingronSharetoConfables.forEach( (confable) => {
 				if(confable['enable']) {
-					let parsedPlatformLink = confable['platformLinkTemplate']
+					let parsedPlatformLink = confable['platform_link_template']
 						.replace('%shortUrl%', shortUrl)
 						.replace('%longUrl%', encodeURIComponent(longUrl))
 						.replace('%title%', encodeURIComponent(confable['title']))
-						.replace('%windowX%', confable['windowX'] ?? '')
-						.replace('%windowY%', confable['windowY'] ?? '');
+						.replace('%window_x%', confable['window_x'] ?? '')
+						.replace('%window_y%', confable['window_y'] ?? '');
 
 					let windowOpenString = 'menubar=no,toolbar=no,location=no,';
 
-					if(confable['windowX']) {
-						windowOpenString += 'width=' + confable['windowX'] + ',';
+					if(confable['window_x']) {
+						windowOpenString += 'width=' + confable['window_x'] + ',';
 					}
 
-					if(confable['windowY']) {
-						windowOpenString += 'height=' + confable['windowY'] + ',';
+					if(confable['window_y']) {
+						windowOpenString += 'height=' + confable['window_y'] + ',';
 					}
 
 					$("#" + confable['key'])
@@ -309,7 +309,7 @@ function maingron_shareto_confable_shareto_custom( $shareName, $args ) {
 		'enable' => maingron_shareto_confable_get_setting($myMainKey . '_enable', false),
 		'title' => maingron_shareto_confable_get_setting($myMainKey . '_title', 'Share to' . ($shareName ?? '???')),
 		'key' => 'maingron_shareto_confable_' . $myMainKey,
-		'platformLinkTemplate' => maingron_shareto_confable_get_setting($myMainKey . '_platformLinkTemplate', YOURLS_SITE . "/%shortUrl%+"),
+		'platform_link_template' => maingron_shareto_confable_get_setting($myMainKey . '_platform_link_template', YOURLS_SITE . "/%shortUrl%+"),
 		'icon' => maingron_shareto_confable_get_setting($myMainKey . '_icon', YOURLS_PLUGINURL . '/' . yourls_plugin_basename(__DIR__) . "/img/transparent.png")
 	]);
 }
@@ -319,9 +319,9 @@ function maingron_shareto_confable_shareto_qr($args) {
 		'enable' => maingron_shareto_confable_get_setting('shareto_qr_enable', false),
 		'title' => maingron_shareto_confable_get_setting('shareto_qr_title', 'QR Code'),
 		'key' => 'maingron_shareto_confable_shareto_qr',
-		'platformLinkTemplate' => maingron_shareto_confable_get_setting('shareto_qr_platformLinkTemplate', 'https://api.qrserver.com/v1/create-qr-code/?data=%shortUrl%&size=%windowX%x%windowY%'),
-		'windowX' => maingron_shareto_confable_get_setting('shareto_qr_windowX', 300) ?? 300,
-		'windowY' => maingron_shareto_confable_get_setting('shareto_qr_windowY', 300) ?? 300,
+		'platform_link_template' => maingron_shareto_confable_get_setting('shareto_qr_platform_link_template', 'https://api.qrserver.com/v1/create-qr-code/?data=%shortUrl%&size=%window_x%x%window_y%'),
+		'window_x' => maingron_shareto_confable_get_setting('shareto_qr_window_x', 300) ?? 300,
+		'window_y' => maingron_shareto_confable_get_setting('shareto_qr_window_y', 300) ?? 300,
 		'icon' => maingron_shareto_confable_get_setting('shareto_qr_icon', YOURLS_PLUGINURL . '/' . yourls_plugin_basename(__DIR__) . "/img/qr_code.png")
 	]);
 }
