@@ -19,7 +19,7 @@ if(yourls_get_option('shareto_disable', false)) {
 	return;
 } else {
 	yourls_add_action( 'share_links', 'maingron_shareto_confable_shareto_init');
-	foreach(['shareto_qr', 'shareto_linkedin', 'shareto_whatsapp', 'shareto_tumblr', 'shareto_custom1', 'shareto_custom2', 'shareto_custom3', 'shareto_custom4', 'shareto_custom5'] as $st_name) {
+	foreach(['shareto_qr', 'shareto_email', 'shareto_linkedin', 'shareto_whatsapp', 'shareto_tumblr', 'shareto_custom1', 'shareto_custom2', 'shareto_custom3', 'shareto_custom4'] as $st_name) {
 		$myEnable = yourls_get_option($st_name . '_enable', false);
 		if($myEnable) {
 			if(function_exists('maingron_shareto_confable_' . $st_name)) {
@@ -36,6 +36,10 @@ function maingron_shareto_confable_get_setting( $setting, $fallback, $forceDefau
 	}
 	$defaults = [
 		'shareto_disable' => false,
+		'shareto_email_enable' => true,
+		'shareto_email_title' => 'E-mail',
+		'shareto_email_platform_link_template' => 'mailto:?subject=%title%&body=%shortUrl%',
+		'shareto_email_icon' => YOURLS_PLUGINURL . '/' . yourls_plugin_basename(__DIR__) . "/img/email.png",
 		'shareto_qr_enable' => true,
 		'shareto_qr_title' => 'QR Code',
 		'shareto_qr_platform_link_template' => 'https://api.qrserver.com/v1/create-qr-code/?data=%shortUrl%&size=%window_x%x%window_y%',
@@ -86,7 +90,7 @@ function maingron_shareto_confable_add_settings() {
 }
 
 function maingron_shareto_confable_settings_page() {
-	$maingron_shareto_custom_shares = ['shareto_qr', 'shareto_linkedin', 'shareto_whatsapp', 'shareto_tumblr', 'shareto_custom1', 'shareto_custom2', 'shareto_custom3', 'shareto_custom4', 'shareto_custom5'];
+	$maingron_shareto_custom_shares = ['shareto_qr', 'shareto_email', 'shareto_linkedin', 'shareto_whatsapp', 'shareto_tumblr', 'shareto_custom1', 'shareto_custom2', 'shareto_custom3', 'shareto_custom4'];
 
 	// Check if form was submitted
 	if( isset( $_POST['shareto_timestamp'] ) ) {
@@ -185,7 +189,7 @@ HTML;
 
 
 function maingron_shareto_confable_settings_update() {
-	$maingron_shareto_custom_shares = ['shareto_qr', 'shareto_linkedin', 'shareto_whatsapp', 'shareto_tumblr', 'shareto_custom1', 'shareto_custom2', 'shareto_custom3', 'shareto_custom4', 'shareto_custom5'];
+	$maingron_shareto_custom_shares = ['shareto_qr', 'shareto_email', 'shareto_linkedin', 'shareto_whatsapp', 'shareto_tumblr', 'shareto_custom1', 'shareto_custom2', 'shareto_custom3', 'shareto_custom4'];
 
 	$shareto_confable_settings = [
 		'shareto_timestamp'   => (int)$_POST['shareto_timestamp'] ?? 0,
@@ -339,6 +343,16 @@ function maingron_shareto_confable_shareto_whatsapp( $args ) {
 	maingron_shareto_confable_shareto_custom( 'whatsapp', $args );
 }
 
+function maingron_shareto_confable_shareto_email( $args ) {
+		maingron_shareto_confable_shareto_javascript([
+		'enable' => maingron_shareto_confable_get_setting('shareto_email_enable', false),
+		'title' => maingron_shareto_confable_get_setting('shareto_email_title', 'Email'),
+		'key' => 'maingron_shareto_confable_shareto_email',
+		'platform_link_template' => maingron_shareto_confable_get_setting('shareto_email_platform_link_template', 'mailto:?subject=%title%&body=%shortUrl%'),
+		'icon' => maingron_shareto_confable_get_setting('shareto_email_icon', YOURLS_PLUGINURL . '/' . yourls_plugin_basename(__DIR__) . "/img/email.png")
+	]);
+}
+
 function maingron_shareto_confable_shareto_custom1( $args ) {
 	maingron_shareto_confable_shareto_custom( "custom1", $args );
 }
@@ -353,8 +367,4 @@ function maingron_shareto_confable_shareto_custom3( $args ) {
 
 function maingron_shareto_confable_shareto_custom4( $args ) {
 	maingron_shareto_confable_shareto_custom( "custom4", $args );
-}
-
-function maingron_shareto_confable_shareto_custom5( $args ) {
-	maingron_shareto_confable_shareto_custom( "custom5", $args );
 }
