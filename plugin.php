@@ -112,7 +112,6 @@ function maingron_shareto_confable_settings_page() {
 
 	echo <<<HTML
 		<main>
-			<!-- <h2>Share To Configurable - ${!${''} = yourls_e('settings', 'maingron_shareto_confable')}</h2> -->
 			<h2>Share To Configurable - Settings</h2>
 			<form method="post" id="maingron_shareto_confable_settings_form">
 				<style>
@@ -124,9 +123,8 @@ function maingron_shareto_confable_settings_page() {
 					#maingron_shareto_confable_settings_form label input:not([type="checkbox"]) {
 						width: 100%;
 						box-sizing: border-box;
-						margin-left: 0 !important	;
+						margin-left: 0 !important;
 						margin-right: 0 !important;
-
 					}
 				</style>
 				<input type="hidden" name="nonce" value="$nonce" />
@@ -154,29 +152,28 @@ function maingron_shareto_confable_settings_page() {
 				</details>
 HTML;
 
-foreach($maingron_shareto_custom_shares as $st_name) {
-echo "<fieldset>";
-echo "<legend>" . str_replace('shareto_', '', $st_name) . "</legend>";
-echo	 "<label>Enable";
-echo 		"<input type='checkbox' name='${st_name}_enable' ${$st_name . '_enable'} />";
-echo 	"</label><br><br>";
-echo	 "<label>Title";
-echo 		"<input type='text' name='${st_name}_title' value='${$st_name . '_title'}' />";
-echo 	"</label><br><br>";
-echo	 "<label>Platform Link Template";
-echo 		"<input type='text' name='${st_name}_platformLinkTemplate' value='${$st_name . '_platformLinkTemplate'}' />";
-echo 	"</label><br><br>";
-echo	 "<label>Icon URL";
-echo 		"<input type='text' name='${st_name}_icon' value='${$st_name . '_icon'}' />";
-echo 	"</label><br><br>";
-echo	 "<label>Popup Window Width (px)";
-echo 		"<input type='number' name='${st_name}_windowX' value='${$st_name . '_windowX'}' />";
-echo 	"</label><br><br>";
-echo	 "<label>Popup Window Height (px)";
-echo 		"<input type='number' name='${st_name}_windowY' value='${$st_name . '_windowY'}' />";
-echo 	"</label>";
-echo "</fieldset><br><br>";
-
+	foreach($maingron_shareto_custom_shares as $st_name) {
+		echo "<fieldset>";
+		echo "<legend>" . str_replace('shareto_', '', $st_name) . "</legend>";
+		echo	 "<label>Enable";
+		echo 		"<input type='checkbox' name='${st_name}_enable' ${$st_name . '_enable'} />";
+		echo 	"</label><br><br>";
+		echo	 "<label>Title";
+		echo 		"<input type='text' name='${st_name}_title' value='${$st_name . '_title'}' />";
+		echo 	"</label><br><br>";
+		echo	 "<label>Platform Link Template";
+		echo 		"<input type='text' name='${st_name}_platformLinkTemplate' value='${$st_name . '_platformLinkTemplate'}' />";
+		echo 	"</label><br><br>";
+		echo	 "<label>Icon URL";
+		echo 		"<input type='text' name='${st_name}_icon' value='${$st_name . '_icon'}' />";
+		echo 	"</label><br><br>";
+		echo	 "<label>Popup Window Width (px)";
+		echo 		"<input type='number' name='${st_name}_windowX' value='${$st_name . '_windowX'}' />";
+		echo 	"</label><br><br>";
+		echo	 "<label>Popup Window Height (px)";
+		echo 		"<input type='number' name='${st_name}_windowY' value='${$st_name . '_windowY'}' />";
+		echo 	"</label>";
+		echo "</fieldset><br><br>";
 	}
 
 	echo <<<HTML
@@ -213,7 +210,6 @@ function maingron_shareto_confable_settings_update() {
 			}
 		}
 		yourls_update_option( $key, $value );
-		
 	}
 }
 
@@ -303,7 +299,6 @@ function maingron_shareto_confable_shareto_javascript($args) {
 				}
 			});
 		});
-
 	</script>
 HTML;
 }
