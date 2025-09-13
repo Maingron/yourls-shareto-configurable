@@ -45,13 +45,13 @@ This plugin **replaces** the following YOURLS plugins or functionalities:
 
 - **QR Code**: [Maingron/yourls-shareto-qr](https://github.com/Maingron/yourls-shareto-qr)
 - **Tumblr Sharing Plugin**: [Gist by ozh](https://gist.github.com/ozh/25b2074dd275ed091aa1869200894c4d)
+- **WhatsApp Sharing Plugin**: [wissehes/Whatsapp-quickshare](https://github.com/wissehes/Whatsapp-quickshare)
 - **LinkedIn Sharing Plugin** [popnt/yourls-linkedin-share](https://github.com/popnt/yourls-linkedin-share)
-- **Disabling Sharing Altogether**: Provides an option to disable all sharing functionalities.
+- **Disabling Sharing Altogether**: [seandrickson/YOURLS-Remove-the-Share-Function](https://github.com/seandrickson/YOURLS-Remove-the-Share-Function/blob/master/plugin.php)
 
 ## Screenshots
 
 ![Settings Page](img/screenshot-1-settings.png)
-*Example of the plugin settings page.*
 
 ## Contributing
 

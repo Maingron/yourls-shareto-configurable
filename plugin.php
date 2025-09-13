@@ -12,14 +12,19 @@ Author URI: https://maingron.com
 if( !defined( 'YOURLS_ABSPATH' ) ) die();
 
 yourls_add_action( 'plugins_loaded', 'maingron_shareto_confable_add_settings' );
-yourls_add_action( 'share_links', 'maingron_shareto_confable_shareto_init');
 
-
-foreach(['shareto_qr', 'shareto_linkedin', 'shareto_whatsapp', 'shareto_tumblr', 'shareto_custom1', 'shareto_custom2', 'shareto_custom3', 'shareto_custom4', 'shareto_custom5'] as $st_name) {
-	$myEnable = yourls_get_option($st_name . '_enable', false);
-	if($myEnable) {
-		if(function_exists('maingron_shareto_confable_' . $st_name)) {
-			yourls_add_action( 'share_links', 'maingron_shareto_confable_' . $st_name);
+if(yourls_get_option('shareto_disable', false)) {
+	yourls_add_filter( 'table_add_row_action_array', 'maingron_shareto_disable_row' );
+	yourls_add_filter( 'shunt_share_box', 'maingron_shareto_disable_shunt' );
+	return;
+} else {
+	yourls_add_action( 'share_links', 'maingron_shareto_confable_shareto_init');
+	foreach(['shareto_qr', 'shareto_linkedin', 'shareto_whatsapp', 'shareto_tumblr', 'shareto_custom1', 'shareto_custom2', 'shareto_custom3', 'shareto_custom4', 'shareto_custom5'] as $st_name) {
+		$myEnable = yourls_get_option($st_name . '_enable', false);
+		if($myEnable) {
+			if(function_exists('maingron_shareto_confable_' . $st_name)) {
+				yourls_add_action( 'share_links', 'maingron_shareto_confable_' . $st_name);
+			}
 		}
 	}
 }
@@ -62,6 +67,17 @@ function maingron_shareto_confable_get_setting( $setting, $fallback, $forceDefau
 		return $defaults[$setting] ?? null;
 	}
 	return $defaults[$setting] ?? $fallback ?? null;
+}
+
+function maingron_shareto_disable_row($actions) {
+	if(isset($actions['share'])) {
+		unset($actions['share']);
+	}
+	return $actions;
+}
+
+function maingron_shareto_disable_shunt() {
+	return true;
 }
 
 function maingron_shareto_confable_add_settings() {
@@ -219,7 +235,7 @@ HTML;
 }
 
 function maingron_shareto_confable_shareto_javascript($args) {
-	if(!$args['enable']) {
+	if(!$args['enable'] || yourls_get_option('shareto_disable', false)) {
 		return;
 	}
 
