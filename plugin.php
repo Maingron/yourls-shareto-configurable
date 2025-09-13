@@ -3,7 +3,7 @@
 Plugin Name: Share to - Configurable
 Plugin URI: https://github.com/Maingron/yourls-shareto-configurable
 Description: Add configurable sharing options to the share box of YOURLS.
-Version: 0.1-dev
+Version: 0.1-rc1
 Author: Maingron
 Author URI: https://maingron.com
 */
