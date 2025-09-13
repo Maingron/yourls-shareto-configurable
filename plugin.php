@@ -263,12 +263,13 @@ function maingron_shareto_confable_shareto_javascript($args) {
 		$('#tweet_body').keypress(function(){
 			let shortUrl = encodeURIComponent( document.querySelector('#copylink').value );
 			let longUrl = document.querySelector("#origlink").value;
+			let titleLink = document.querySelector("#titlelink").value;
 			maingronSharetoConfables.forEach( (confable) => {
 				if(confable['enable']) {
 					let parsedPlatformLink = confable['platform_link_template']
 						.replace('%shortUrl%', shortUrl)
-						.replace('%longUrl%', encodeURIComponent(longUrl))
-						.replace('%title%', encodeURIComponent(confable['title']))
+						.replace('%longUrl%', longUrl)
+						.replace('%title%', titleLink)
 						.replace('%window_x%', confable['window_x'] ?? '')
 						.replace('%window_y%', confable['window_y'] ?? '');
 
