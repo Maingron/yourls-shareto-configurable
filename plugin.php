@@ -1,9 +1,9 @@
 <?php
 /*
-Plugin Name: Shareto - Configurable
+Plugin Name: Share to - Configurable
 Plugin URI: https://github.com/Maingron/yourls-shareto-configurable
-Description: DESCRIPTION
-Version: 0.0.1-dev
+Description: Add configurable sharing options to the share box of YOURLS.
+Version: 0.1-dev
 Author: Maingron
 Author URI: https://maingron.com
 */
