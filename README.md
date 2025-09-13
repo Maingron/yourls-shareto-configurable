@@ -15,7 +15,7 @@ Plugin Page: [Maingron/yourls-shareto-configurable](https://github.com/Maingron/
 - Enable or disable sharing options for specific platforms.
 - Customize titles, platform link templates, and icons for each sharing option.
 - Configure popup window dimensions for sharing dialogs.
-- Supports QR codes, LinkedIn, Tumblr, and up to 5 custom sharing options.
+- Supports QR codes, E-Mails, LinkedIn, other platforms, plus up to 4 custom sharing options.
 
 ## Installation
 
@@ -37,15 +37,18 @@ Plugin Page: [Maingron/yourls-shareto-configurable](https://github.com/Maingron/
 ## Supported Platforms
 
 - **QR Code**
-- **LinkedIn** 
+- **E-Mail**
+- **LinkedIn**
 - **Tumblr**
-- **Custom Sharing Options** (up to 5)
+- **WhatsApp**
+- **Custom Sharing Options** (up to 4)
 
 ## Replaces
 
 This plugin **replaces** the following YOURLS plugins or functionalities:
 
-- **QR Code**: [Maingron/yourls-shareto-qr](https://github.com/Maingron/yourls-shareto-qr)
+- **QR Code Plugin**: [Maingron/yourls-shareto-qr](https://github.com/Maingron/yourls-shareto-qr)
+- **E-Mail Sharing Plugin**: [peterberbec/yourls-mailto](https://github.com/peterberbec/yourls-mailto)
 - **Tumblr Sharing Plugin**: [Gist by ozh](https://gist.github.com/ozh/25b2074dd275ed091aa1869200894c4d)
 - **WhatsApp Sharing Plugin**: [wissehes/Whatsapp-quickshare](https://github.com/wissehes/Whatsapp-quickshare)
 - **LinkedIn Sharing Plugin** [popnt/yourls-linkedin-share](https://github.com/popnt/yourls-linkedin-share)
