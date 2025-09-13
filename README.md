@@ -52,6 +52,7 @@ This plugin **replaces** the following YOURLS plugins or functionalities:
 ## Screenshots
 
 ![Settings Page](img/screenshot-1-settings.png)
+![Sharing Options](img/screenshot-2-admin.png)
 
 ## Contributing
 
