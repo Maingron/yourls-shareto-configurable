@@ -85,7 +85,7 @@ function maingron_shareto_disable_shunt() {
 }
 
 function maingron_shareto_confable_add_settings() {
-	// yourls_load_custom_textdomain( "maingron_shareto_confable", dirname( __FILE__ ) . '/lang'  );
+	yourls_load_custom_textdomain( "maingron_shareto_confable", dirname( __FILE__ ) . '/lang' );
 	yourls_register_plugin_page( 'shareto_confable_settings', 'Share Settings', 'maingron_shareto_confable_settings_page' );
 }
 
@@ -116,7 +116,7 @@ function maingron_shareto_confable_settings_page() {
 
 	echo <<<HTML
 		<main>
-			<h2>Share To Configurable - Settings</h2>
+			<h2>Share To Configurable - ${!${''} = yourls__('Settings', 'maingron_shareto_confable')}</h2>
 			<form method="post" id="maingron_shareto_confable_settings_form">
 				<style>
 					#maingron_shareto_confable_settings_form,
@@ -134,23 +134,23 @@ function maingron_shareto_confable_settings_page() {
 				<input type="hidden" name="nonce" value="$nonce" />
 				<input type="hidden" name="shareto_timestamp" value="$shareto_timestamp" />
 				<fieldset>
-					<legend>General</legend>
+					<legend>${!${''} = yourls__('General', 'maingron_shareto_confable')}</legend>
 					<label>
-						Disable Share feature entirely
+						${!${''} = yourls__('Disable Share feature entirely', 'maingron_shareto_confable')}
 						<input type="checkbox" name="shareto_disable" $shareto_disable />
 					</label>
 				</fieldset>
 
 				<br><br>
 				<details>
-					<summary>Variables</summary>
+					<summary>${!${''} = yourls__('Variables', 'maingron_shareto_confable')}</summary>
 					<div>
 						<p>
-							<code>%shortUrl%</code> - The shortened URL<br>
-							<code>%longUrl%</code> - The original URL<br>
-							<code>%title%</code> - The title of the link (if any)<br>
-							<code>%window_x%</code> - Width of the popup window (if any)<br>
-							<code>%window_y%</code> - Height of the popup window (if any)<br>
+							<code>%shortUrl%</code> - ${!${''} = yourls__('The shortened URL', 'maingron_shareto_confable')}<br>
+							<code>%longUrl%</code> - ${!${''} = yourls__('The original URL', 'maingron_shareto_confable')}<br>
+							<code>%title%</code> - ${!${''} = yourls__('The title of the link (if any)', 'maingron_shareto_confable')}<br>
+							<code>%window_x%</code> - ${!${''} = yourls__('Width of the popup window (if any)', 'maingron_shareto_confable')}<br>
+							<code>%window_y%</code> - ${!${''} = yourls__('Height of the popup window (if any)', 'maingron_shareto_confable')}<br>
 						</p>
 					</div>
 				</details>
@@ -159,29 +159,29 @@ HTML;
 	foreach($maingron_shareto_custom_shares as $st_name) {
 		echo "<fieldset>";
 		echo "<legend>" . str_replace('shareto_', '', $st_name) . "</legend>";
-		echo	 "<label>Enable";
+		echo	 "<label>" . yourls__('Enable', 'maingron_shareto_confable');
 		echo 		"<input type='checkbox' name='${st_name}_enable' ${$st_name . '_enable'} />";
 		echo 	"</label><br><br>";
-		echo	 "<label>Title";
+		echo	 "<label>" . yourls__('Title', 'maingron_shareto_confable');
 		echo 		"<input type='text' name='${st_name}_title' value='${$st_name . '_title'}' />";
 		echo 	"</label><br><br>";
-		echo	 "<label>Platform Link Template";
+		echo	 "<label>" . yourls__('Platform Link Template', 'maingron_shareto_confable');
 		echo 		"<input type='text' name='${st_name}_platform_link_template' value='${$st_name . '_platform_link_template'}' />";
 		echo 	"</label><br><br>";
-		echo	 "<label>Icon URL";
+		echo	 "<label>" . yourls__('Icon URL', 'maingron_shareto_confable');
 		echo 		"<input type='text' name='${st_name}_icon' value='${$st_name . '_icon'}' />";
 		echo 	"</label><br><br>";
-		echo	 "<label>Popup Window Width (px)";
+		echo	 "<label>" . yourls__('Popup Window Width (px)', 'maingron_shareto_confable');
 		echo 		"<input type='number' name='${st_name}_window_x' value='${$st_name . '_window_x'}' />";
 		echo 	"</label><br><br>";
-		echo	 "<label>Popup Window Height (px)";
+		echo	 "<label>" . yourls__('Popup Window Height (px)', 'maingron_shareto_confable');
 		echo 		"<input type='number' name='${st_name}_window_y' value='${$st_name . '_window_y'}' />";
 		echo 	"</label>";
 		echo "</fieldset><br><br>";
 	}
 
 	echo <<<HTML
-				<p><input type="submit" value="Save" class="button" /></p>
+				<p><input type="submit" value="${!${''} = yourls__('Save', 'maingron_shareto_confable')}" class="button" /></p>
 			</form>
 		</main>
 HTML;
