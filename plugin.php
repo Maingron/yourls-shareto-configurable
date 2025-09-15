@@ -104,7 +104,10 @@ function maingron_shareto_confable_settings_page() {
 	$nonce = yourls_create_nonce( 'shareto_confable_settings' );
 	$shareto_timestamp = time(); // Used to verify if form was submitted. //TODO: Check if settings have been changed in the meantime by another user.
 	$shareto_disable = yourls_get_option('shareto_disable', false) ? 'checked' : '';
+	$shareto_disable_twitter = yourls_get_option('shareto_disable_twitter', false) ? 'checked' : '';
+	$shareto_disable_facebook = yourls_get_option('shareto_disable_facebook', false) ? 'checked' : '';
 	$shareto_qr_enable = yourls_get_option('shareto_qr_enable', false) ? 'checked' : '';
+
 	foreach($maingron_shareto_custom_shares as $st_name) {
 		${$st_name . '_enable'} = maingron_shareto_confable_get_setting($st_name . '_enable', false) ? 'checked' : '';
 		${$st_name . '_title'} = maingron_shareto_confable_get_setting($st_name . '_title', 'Title');
@@ -138,6 +141,22 @@ function maingron_shareto_confable_settings_page() {
 					<label>
 						${!${''} = yourls__('Disable Share feature entirely', 'maingron_shareto_confable')}
 						<input type="checkbox" name="shareto_disable" $shareto_disable />
+					</label>
+				</fieldset>
+
+				<fieldset>
+					<legend>${!${''} = yourls__('Twitter', 'maingron_shareto_confable')}</legend>
+					<label>
+						${!${''} = yourls__('Disable', 'maingron_shareto_confable')}
+						<input type="checkbox" name="shareto_disable_twitter" $shareto_disable_twitter />
+					</label>
+				</fieldset>
+
+				<fieldset>
+					<legend>${!${''} = yourls__('Facebook', 'maingron_shareto_confable')}</legend>
+					<label>
+						${!${''} = yourls__('Disable', 'maingron_shareto_confable')}
+						<input type="checkbox" name="shareto_disable_facebook" $shareto_disable_facebook />
 					</label>
 				</fieldset>
 
@@ -193,7 +212,9 @@ function maingron_shareto_confable_settings_update() {
 
 	$shareto_confable_settings = [
 		'shareto_timestamp'   => (int)$_POST['shareto_timestamp'] ?? 0,
-		'shareto_disable' => isset($_POST['shareto_disable'])
+		'shareto_disable' => isset($_POST['shareto_disable']),
+		'shareto_disable_twitter' => isset($_POST['shareto_disable_twitter']),
+		'shareto_disable_facebook' => isset($_POST['shareto_disable_facebook']),
 	];
 
 	foreach($maingron_shareto_custom_shares as $st_name) {
@@ -231,7 +252,17 @@ function maingron_shareto_confable_shareto_init( $args ) {
 				background-size: contain;
 			}
 		</style>
-HTML;
+	HTML;
+
+	foreach(['twitter' => 'tw', 'facebook' => 'fb'] as $k => $v) {
+		if(yourls_get_option('shareto_disable_' . $k, false )) {
+			?>
+				<script>
+					$("#share_links #share_<?php echo $v; ?>").remove();
+				</script>
+			<?php
+		}
+	}
 }
 
 function maingron_shareto_confable_shareto_javascript($args) {
