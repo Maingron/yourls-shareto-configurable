@@ -20,7 +20,7 @@ if(yourls_get_option('shareto_disable', false)) {
 } else {
 	yourls_add_action( 'share_links', 'maingron_shareto_confable_shareto_init');
 	foreach(['shareto_qr', 'shareto_email', 'shareto_linkedin', 'shareto_whatsapp', 'shareto_tumblr', 'shareto_custom1', 'shareto_custom2', 'shareto_custom3', 'shareto_custom4'] as $st_name) {
-		$myEnable = yourls_get_option($st_name . '_enable', false);
+		$myEnable = maingron_shareto_confable_get_setting($st_name . '_enable');
 		if($myEnable) {
 			if(function_exists('maingron_shareto_confable_' . $st_name)) {
 				yourls_add_action( 'share_links', 'maingron_shareto_confable_' . $st_name);
@@ -100,16 +100,14 @@ function maingron_shareto_confable_settings_page() {
 		maingron_shareto_confable_settings_update();
 	}
 
-	// $random_length = yourls_get_option('random_shorturls_length', 5);
 	$nonce = yourls_create_nonce( 'shareto_confable_settings' );
 	$shareto_timestamp = time(); // Used to verify if form was submitted. //TODO: Check if settings have been changed in the meantime by another user.
-	$shareto_disable = yourls_get_option('shareto_disable', false) ? 'checked' : '';
-	$shareto_disable_twitter = yourls_get_option('shareto_disable_twitter', false) ? 'checked' : '';
-	$shareto_disable_facebook = yourls_get_option('shareto_disable_facebook', false) ? 'checked' : '';
-	$shareto_qr_enable = yourls_get_option('shareto_qr_enable', false) ? 'checked' : '';
+	$shareto_disable = maingron_shareto_confable_get_setting('shareto_disable') ? 'checked' : '';
+	$shareto_disable_twitter = maingron_shareto_confable_get_setting('shareto_disable_twitter') ? 'checked' : '';
+	$shareto_disable_facebook = maingron_shareto_confable_get_setting('shareto_disable_facebook') ? 'checked' : '';
 
 	foreach($maingron_shareto_custom_shares as $st_name) {
-		${$st_name . '_enable'} = maingron_shareto_confable_get_setting($st_name . '_enable', false) ? 'checked' : '';
+		${$st_name . '_enable'} = maingron_shareto_confable_get_setting($st_name . '_enable') ? 'checked' : '';
 		${$st_name . '_title'} = maingron_shareto_confable_get_setting($st_name . '_title', 'Title');
 		${$st_name . '_platform_link_template'} = maingron_shareto_confable_get_setting($st_name . '_platform_link_template', YOURLS_SITE . "/%shortUrl%+") ?? '';
 		${$st_name . '_icon'} = maingron_shareto_confable_get_setting($st_name . '_icon', YOURLS_PLUGINURL . '/' . yourls_plugin_basename(__DIR__) . "/img/transparent.png") ?? '';
@@ -211,7 +209,7 @@ function maingron_shareto_confable_settings_update() {
 	$maingron_shareto_custom_shares = ['shareto_qr', 'shareto_email', 'shareto_linkedin', 'shareto_whatsapp', 'shareto_tumblr', 'shareto_custom1', 'shareto_custom2', 'shareto_custom3', 'shareto_custom4'];
 
 	$shareto_confable_settings = [
-		'shareto_timestamp'   => (int)$_POST['shareto_timestamp'] ?? 0,
+		'shareto_timestamp' => (int)$_POST['shareto_timestamp'] ?? 0,
 		'shareto_disable' => isset($_POST['shareto_disable']),
 		'shareto_disable_twitter' => isset($_POST['shareto_disable_twitter']),
 		'shareto_disable_facebook' => isset($_POST['shareto_disable_facebook']),
@@ -255,7 +253,7 @@ function maingron_shareto_confable_shareto_init( $args ) {
 	HTML;
 
 	foreach(['twitter' => 'tw', 'facebook' => 'fb'] as $k => $v) {
-		if(yourls_get_option('shareto_disable_' . $k, false )) {
+		if(maingron_shareto_confable_get_setting('shareto_disable_' . $k, false )) {
 			?>
 				<script>
 					$("#share_links #share_<?php echo $v; ?>").remove();
@@ -352,8 +350,8 @@ function maingron_shareto_confable_shareto_custom( $shareName, $args ) {
 
 function maingron_shareto_confable_shareto_qr($args) {
 	maingron_shareto_confable_shareto_javascript([
-		'enable' => maingron_shareto_confable_get_setting('shareto_qr_enable', false),
-		'title' => maingron_shareto_confable_get_setting('shareto_qr_title', 'QR Code'),
+		'enable' => maingron_shareto_confable_get_setting('shareto_qr_enable'),
+		'title' => maingron_shareto_confable_get_setting('shareto_qr_title'),
 		'key' => 'maingron_shareto_confable_shareto_qr',
 		'platform_link_template' => maingron_shareto_confable_get_setting('shareto_qr_platform_link_template', 'https://api.qrserver.com/v1/create-qr-code/?data=%shortUrl%&size=%window_x%x%window_y%'),
 		'window_x' => maingron_shareto_confable_get_setting('shareto_qr_window_x', 300) ?? 300,
