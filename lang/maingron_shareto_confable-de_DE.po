@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2025-09-14 21:41+0200\n"
-"PO-Revision-Date: 2025-09-14 21:53+0200\n"
+"POT-Creation-Date: 2025-09-15 15:43+0200\n"
+"PO-Revision-Date: 2025-09-15 15:44+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -11,69 +11,82 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.7\n"
 "X-Poedit-Basepath: ..\n"
-"X-Poedit-KeywordsList: yourls__;yourls_e;yourls_s;yourls_se;yourls_esc_attr__;yourls_esc_html__;yourls_x;yourls_ex;yourls_esc_attr_x;yourls_esc_html_x;yourls_n:1,2;yourls_nx:1,2;yourls_n_noop:1,2;yourls_nx_noop:1,2\n"
+"X-Poedit-KeywordsList: "
+"yourls__;yourls_e;yourls_s;yourls_se;yourls_esc_attr__;yourls_esc_html__;yourls_x;yourls_ex;yourls_esc_attr_x;yourls_esc_html_x;yourls_n:1,2;yourls_nx:1,2;yourls_n_noop:1,2;yourls_nx_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: plugin.php:119
+#: plugin.php:124
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: plugin.php:135
+#: plugin.php:142
 msgid "General"
 msgstr "Allgemein"
 
-#: plugin.php:137
+#: plugin.php:144
 msgid "Disable Share feature entirely"
 msgstr "Share-Features komplett deaktivieren"
 
-#: plugin.php:144
+#: plugin.php:150
+msgid "Twitter"
+msgstr "Twitter"
+
+#: plugin.php:152 plugin.php:160
+msgid "Disable"
+msgstr "Deaktivieren"
+
+#: plugin.php:158
+msgid "Facebook"
+msgstr "Facebook"
+
+#: plugin.php:167
 msgid "Variables"
 msgstr "Variablen"
 
-#: plugin.php:147
+#: plugin.php:170
 msgid "The shortened URL"
 msgstr "Gekürzte URL"
 
-#: plugin.php:148
+#: plugin.php:171
 msgid "The original URL"
 msgstr "Ursprüngliche URL"
 
-#: plugin.php:149
+#: plugin.php:172
 msgid "The title of the link (if any)"
 msgstr "Linktitel (Wenn gewünscht)"
 
-#: plugin.php:150
+#: plugin.php:173
 msgid "Width of the popup window (if any)"
 msgstr "Breite des Popup-Fensters (Wenn gewünscht)"
 
-#: plugin.php:151
+#: plugin.php:174
 msgid "Height of the popup window (if any)"
 msgstr "Höhe des Popup-Fensters (Wenn gewünscht)"
 
-#: plugin.php:162
+#: plugin.php:183
 msgid "Enable"
 msgstr "Aktivieren"
 
-#: plugin.php:165
+#: plugin.php:187
 msgid "Title"
 msgstr "Titel"
 
-#: plugin.php:168
+#: plugin.php:191
 msgid "Platform Link Template"
 msgstr "Link-Vorlage der Plattform"
 
-#: plugin.php:171
+#: plugin.php:195
 msgid "Icon URL"
 msgstr "Icon URL"
 
-#: plugin.php:174
+#: plugin.php:199
 msgid "Popup Window Width (px)"
 msgstr "Breite des Popup Fensters (px)"
 
-#: plugin.php:177
+#: plugin.php:203
 msgid "Popup Window Height (px)"
 msgstr "Höhe des Popup Fensters (px)"
 
-#: plugin.php:184
+#: plugin.php:208
 msgid "Save"
 msgstr "Speichern"
