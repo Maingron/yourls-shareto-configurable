@@ -29,9 +29,10 @@ if(yourls_get_option('shareto_disable', false)) {
 	}
 }
 
+
 function maingron_shareto_confable_get_setting( string $setting, $fallback = null, $forceDefault = false ) {
 	$result = yourls_get_option($setting, null);
-	if($result != null && !$forceDefault) {
+	if($result !== null && !$forceDefault) {
 		return $result ?? $fallback;
 	}
 	$defaults = [
