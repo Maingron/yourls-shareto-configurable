@@ -32,9 +32,11 @@ if(yourls_get_option('shareto_disable', false)) {
 
 function maingron_shareto_confable_get_setting( string $setting, $fallback = null, $forceDefault = false ) {
 	$result = yourls_get_option($setting, null);
+
 	if($result !== null && !$forceDefault) {
 		return $result ?? $fallback;
 	}
+
 	$defaults = [
 		'shareto_disable' => false,
 		'shareto_email_enable' => true,
@@ -113,96 +115,100 @@ function maingron_shareto_confable_settings_page() {
 		${$st_name . '_platform_link_template'} = maingron_shareto_confable_get_setting($st_name . '_platform_link_template', YOURLS_SITE . "/%shortUrl%+") ?? '';
 		${$st_name . '_icon'} = maingron_shareto_confable_get_setting($st_name . '_icon', YOURLS_PLUGINURL . '/' . yourls_plugin_basename(__DIR__) . "/img/transparent.png") ?? '';
 		${$st_name . '_window_x'} = maingron_shareto_confable_get_setting($st_name . '_window_x', '') ?? '';
-		${$st_name . '_window_y'} = maingron_shareto_confable_get_setting($st_name . '_window_y', '') ?? ''; 
+		${$st_name . '_window_y'} = maingron_shareto_confable_get_setting($st_name . '_window_y', '') ?? '';
 	}
 
-	echo <<<HTML
-		<main>
-			<h2>Share To Configurable - ${!${''} = yourls__('Settings', 'maingron_shareto_confable')}</h2>
-			<form method="post" id="maingron_shareto_confable_settings_form">
-				<style>
-					#maingron_shareto_confable_settings_form,
-					#maingron_shareto_confable_settings_form fieldset,
-					#maingron_shareto_confable_settings_form label {
-						box-sizing: border-box;
-					}
-					#maingron_shareto_confable_settings_form label input:not([type="checkbox"]) {
-						width: 100%;
-						box-sizing: border-box;
-						margin-left: 0 !important;
-						margin-right: 0 !important;
-					}
-				</style>
-				<input type="hidden" name="nonce" value="$nonce" />
-				<input type="hidden" name="shareto_timestamp" value="$shareto_timestamp" />
-				<fieldset>
-					<legend>${!${''} = yourls__('General', 'maingron_shareto_confable')}</legend>
-					<label>
-						${!${''} = yourls__('Disable Share feature entirely', 'maingron_shareto_confable')}
-						<input type="checkbox" name="shareto_disable" $shareto_disable />
-					</label>
-				</fieldset>
+	?>
 
-				<fieldset>
-					<legend>${!${''} = yourls__('Twitter', 'maingron_shareto_confable')}</legend>
-					<label>
-						${!${''} = yourls__('Disable', 'maingron_shareto_confable')}
-						<input type="checkbox" name="shareto_disable_twitter" $shareto_disable_twitter />
-					</label>
-				</fieldset>
+	<main>
+		<h2>Share To Configurable - <?php yourls_e('Settings', 'maingron_shareto_confable') ?></h2>
+		<form method="post" id="maingron_shareto_confable_settings_form">
+			<style>
+				#maingron_shareto_confable_settings_form,
+				#maingron_shareto_confable_settings_form fieldset,
+				#maingron_shareto_confable_settings_form label {
+					box-sizing: border-box;
+				}
+				#maingron_shareto_confable_settings_form label input:not([type="checkbox"]) {
+					width: 100%;
+					box-sizing: border-box;
+					margin-left: 0 !important;
+					margin-right: 0 !important;
+				}
+			</style>
+			<input type="hidden" name="nonce" value="<?php echo $nonce; ?>" />
+			<input type="hidden" name="shareto_timestamp" value="<?php echo $shareto_timestamp ?>" />
+			<fieldset>
+				<legend><?php yourls_e('General', 'maingron_shareto_confable'); ?></legend>
+				<label>
+					<?php yourls_e('Disable Share feature entirely', 'maingron_shareto_confable')?>
+					<input type="checkbox" name="shareto_disable" <?php echo $shareto_disable ?> />
+				</label>
+			</fieldset>
 
-				<fieldset>
-					<legend>${!${''} = yourls__('Facebook', 'maingron_shareto_confable')}</legend>
-					<label>
-						${!${''} = yourls__('Disable', 'maingron_shareto_confable')}
-						<input type="checkbox" name="shareto_disable_facebook" $shareto_disable_facebook />
-					</label>
-				</fieldset>
+			<fieldset>
+				<legend><?php yourls_e('Twitter', 'maingron_shareto_confable'); ?></legend>
+				<label>
+					<?php yourls_e('Disable', 'maingron_shareto_confable')?>
+					<input type="checkbox" name="shareto_disable_twitter" <?php echo $shareto_disable_twitter ?> />
+				</label>
+			</fieldset>
 
-				<br><br>
-				<details>
-					<summary>${!${''} = yourls__('Variables', 'maingron_shareto_confable')}</summary>
-					<div>
-						<p>
-							<code>%shortUrl%</code> - ${!${''} = yourls__('The shortened URL', 'maingron_shareto_confable')}<br>
-							<code>%longUrl%</code> - ${!${''} = yourls__('The original URL', 'maingron_shareto_confable')}<br>
-							<code>%title%</code> - ${!${''} = yourls__('The title of the link (if any)', 'maingron_shareto_confable')}<br>
-							<code>%window_x%</code> - ${!${''} = yourls__('Width of the popup window (if any)', 'maingron_shareto_confable')}<br>
-							<code>%window_y%</code> - ${!${''} = yourls__('Height of the popup window (if any)', 'maingron_shareto_confable')}<br>
-						</p>
-					</div>
-				</details>
-HTML;
+			<fieldset>
+				<legend><?php yourls_e('Facebook', 'maingron_shareto_confable'); ?></legend>
+				<label>
+					<?php yourls_e('Disable', 'maingron_shareto_confable')?>
+					<input type="checkbox" name="shareto_disable_facebook" <?php echo $shareto_disable_facebook ?> />
+				</label>
+			</fieldset>
 
-	foreach($maingron_shareto_custom_shares as $st_name) {
-		echo "<fieldset>";
-		echo "<legend>" . str_replace('shareto_', '', $st_name) . "</legend>";
-		echo	 "<label>" . yourls__('Enable', 'maingron_shareto_confable');
-		echo 		"<input type='checkbox' name='${st_name}_enable' ${$st_name . '_enable'} />";
-		echo 	"</label><br><br>";
-		echo	 "<label>" . yourls__('Title', 'maingron_shareto_confable');
-		echo 		"<input type='text' name='${st_name}_title' value='${$st_name . '_title'}' />";
-		echo 	"</label><br><br>";
-		echo	 "<label>" . yourls__('Platform Link Template', 'maingron_shareto_confable');
-		echo 		"<input type='text' name='${st_name}_platform_link_template' value='${$st_name . '_platform_link_template'}' />";
-		echo 	"</label><br><br>";
-		echo	 "<label>" . yourls__('Icon URL', 'maingron_shareto_confable');
-		echo 		"<input type='text' name='${st_name}_icon' value='${$st_name . '_icon'}' />";
-		echo 	"</label><br><br>";
-		echo	 "<label>" . yourls__('Popup Window Width (px)', 'maingron_shareto_confable');
-		echo 		"<input type='number' name='${st_name}_window_x' value='${$st_name . '_window_x'}' />";
-		echo 	"</label><br><br>";
-		echo	 "<label>" . yourls__('Popup Window Height (px)', 'maingron_shareto_confable');
-		echo 		"<input type='number' name='${st_name}_window_y' value='${$st_name . '_window_y'}' />";
-		echo 	"</label>";
-		echo "</fieldset><br><br>";
-	}
+			<br><br>
+			<details>
+				<summary><?php yourls_e('Variables', 'maingron_shareto_confable') ?></summary>
+				<div>
+					<p>
+						<code>%shortUrl%</code> - <?php yourls_e('The shortened URL', 'maingron_shareto_confable') ?><br>
+						<code>%longUrl%</code> - <?php yourls_e('The original URL', 'maingron_shareto_confable') ?><br>
+						<code>%title%</code> - <?php yourls_e('The title of the link (if any)', 'maingron_shareto_confable') ?><br>
+						<code>%window_x%</code> - <?php yourls_e('Width of the popup window (if any)', 'maingron_shareto_confable') ?><br>
+						<code>%window_y%</code> - <?php yourls_e('Height of the popup window (if any)', 'maingron_shareto_confable') ?><br>
+					</p>
+				</div>
+			</details>
 
-	echo <<<HTML
-				<p><input type="submit" value="${!${''} = yourls__('Save', 'maingron_shareto_confable')}" class="button" /></p>
-			</form>
-		</main>
-HTML;
+		<?php foreach($maingron_shareto_custom_shares as $st_name): ?>
+			<fieldset>
+				<legend><?php echo str_replace('shareto_', '', $st_name) ?></legend>
+				<label>
+					<?php yourls_e('Enable', 'maingron_shareto_confable') ?>
+					<input type='checkbox' name="<?php echo $st_name ?>_enable" <?php echo ${$st_name . '_enable'} ?> />
+				</label><br><br>
+				<label>
+					<?php yourls_e('Title', 'maingron_shareto_confable') ?>
+					<input type='text' name="<?php echo $st_name ?>_title" value="<?php echo ${$st_name . '_title'} ?>" />
+				</label><br><br>
+				<label>
+					<?php yourls_e('Platform Link Template', 'maingron_shareto_confable') ?>
+					<input type='text' name="<?php echo $st_name ?>_platform_link_template" value="<?php echo ${$st_name . '_platform_link_template'} ?>" />
+				</label><br><br>
+				<label>
+					<?php yourls_e('Icon URL', 'maingron_shareto_confable') ?>
+					<input type='text' name="<?php echo $st_name ?>_icon" value="<?php echo ${$st_name . '_icon'} ?>" />
+				</label><br><br>
+				<label>
+					<?php yourls_e('Popup Window Width (px)', 'maingron_shareto_confable') ?>
+					<input type='number' name="<?php echo $st_name ?>_window_x" value="<?php echo ${$st_name . '_window_x'} ?>" />
+				</label><br><br>
+				<label>
+					<?php yourls_e('Popup Window Height (px)', 'maingron_shareto_confable') ?>
+					<input type='number' name="<?php echo $st_name ?>_window_y" value="<?php echo ${$st_name . '_window_y'} ?>" />
+				</label>
+			</fieldset><br><br>
+		<?php endforeach; ?>
+		<p><input type="submit" value="<?php yourls_e('Save', 'maingron_shareto_confable') ?>" class="button" /></p>
+		</form>
+	</main>
+	<?php
 }
 
 
@@ -217,7 +223,6 @@ function maingron_shareto_confable_settings_update() {
 	];
 
 	foreach($maingron_shareto_custom_shares as $st_name) {
-		// $shareto_confable_settings[${$st_name . '_enable'}] = isset($_POST["${$st_name . '_enable'}"]);
 		$shareto_confable_settings[$st_name . '_enable'] = isset($_POST[$st_name . '_enable']);
 		$shareto_confable_settings[$st_name . '_title'] = $_POST[$st_name . '_title'] ?? 'Title';
 		$shareto_confable_settings[$st_name . '_platform_link_template'] = $_POST[$st_name . '_platform_link_template'] ?? YOURLS_SITE . "/%shortUrl%+";
@@ -250,30 +255,30 @@ function maingron_shareto_confable_settings_update() {
 }
 
 function maingron_shareto_confable_shareto_init( $args ) {
-	echo <<<HTML
-		<script>
-			var maingronSharetoConfables = [];
-		</script>
+	?>
 
-		<style>
-			#share_links a.maingron_shareto_confable_link {
-				backgorund-color: transparent;
-				background-image: var(--linkicon);
-				background-repeat: no-repeat;
-				background-size: contain;
-			}
-		</style>
-	HTML;
+	<script>
+		var maingronSharetoConfables = [];
+	</script>
 
-	foreach(['twitter' => 'tw', 'facebook' => 'fb'] as $k => $v) {
-		if(maingron_shareto_confable_get_setting('shareto_disable_' . $k, false )) {
-			?>
-				<script>
-					$("#share_links #share_<?php echo $v; ?>").remove();
-				</script>
-			<?php
+	<style>
+		#share_links a.maingron_shareto_confable_link {
+			background-color: transparent;
+			background-image: var(--linkicon);
+			background-repeat: no-repeat;
+			background-size: contain;
 		}
-	}
+	</style>
+
+	<?php foreach(['twitter' => 'tw', 'facebook' => 'fb'] as $k => $v): ?>
+		<?php if(maingron_shareto_confable_get_setting('shareto_disable_' . $k, false )): ?>
+			<script>
+				$("#share_links #share_<?php echo $v; ?>").remove();
+			</script>
+		<?php endif; ?>
+	<?php endforeach; ?>
+
+	<?php
 }
 
 function maingron_shareto_confable_shareto_javascript($args) {
@@ -291,18 +296,22 @@ function maingron_shareto_confable_shareto_javascript($args) {
 		'window_y' => '',
 	], $args);
 
-	echo <<<HTML
-	<a id="$args[key]" href="#" title="$args[title]">$args[title]</a>
+	?>
+
+	<a id="<?php echo $args['key'] ?>" href="#" title="<?php echo $args['title'] ?>">
+		<?php echo $args['title'] ?>
+	</a>
+
 	<script>
 		maingronSharetoConfables.push(
 			{
-				"enable": "$args[enable]",
-				"title": "$args[title]",
-				"platform_link_template": "$args[platform_link_template]",
-				"key": "$args[key]",
-				"icon": "$args[icon]",
-				"window_x": "$args[window_x]",
-				"window_y": "$args[window_y]",
+				"enable": "<?php echo $args['enable'] ?>",
+				"title": "<?php echo $args['title'] ?>",
+				"platform_link_template": "<?php echo $args['platform_link_template'] ?>",
+				"key": "<?php echo $args['key'] ?>",
+				"icon": "<?php echo $args['icon'] ?>",
+				"window_x": "<?php echo $args['window_x'] ?>",
+				"window_y": "<?php echo $args['window_y'] ?>",
 			}
 		);
 
@@ -310,7 +319,7 @@ function maingron_shareto_confable_shareto_javascript($args) {
 			let shortUrl = encodeURIComponent( document.querySelector('#copylink').value );
 			let longUrl = document.querySelector("#origlink").value;
 			let titleLink = document.querySelector("#titlelink").value;
-			maingronSharetoConfables.forEach( (confable) => {
+			maingronSharetoConfables.forEach((confable) => {
 				if(confable['enable']) {
 					let parsedPlatformLink = confable['platform_link_template']
 						.replace('%shortUrl%', shortUrl)
@@ -347,7 +356,7 @@ function maingron_shareto_confable_shareto_javascript($args) {
 			});
 		});
 	</script>
-HTML;
+	<?php
 }
 
 function maingron_shareto_confable_shareto_custom( $shareName, $args ) {
