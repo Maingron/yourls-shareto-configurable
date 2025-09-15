@@ -227,12 +227,24 @@ function maingron_shareto_confable_settings_update() {
 	}
 
 	foreach( $shareto_confable_settings as $key => $value ) {
-		if(empty($value) || $value == maingron_shareto_confable_get_setting($key, null, true)) {
-			if((strpos($key, '_icon') !== false || strpos($key, '_title') !== false) || strpos($key, '_window_x') !== false || strpos($key, '_window_y') !== false || strpos($key, '_platform_link_template') !== false) {
+		$option_is_in_db = yourls_get_option($key, null) !== null;
+
+		if((empty($value) && $value !== false) || $value == maingron_shareto_confable_get_setting($key, null, true)) {
+			// If option is same as default, there's no need to store a value in db
+			// Also: If option is cleared, restore default value
+			if($option_is_in_db) {
+				// No need to delete if not in db anyway
 				yourls_delete_option( $key );
-				continue;
 			}
+			continue;
 		}
+
+		if(!$option_is_in_db) {
+			// assume option doesn't exist in db yet. We can't reliably update an non-existant option to "false" for some reason
+			yourls_add_option($key, $value);
+			continue;
+		}
+
 		yourls_update_option( $key, $value );
 	}
 }
