@@ -303,17 +303,15 @@ function maingron_shareto_confable_shareto_javascript($args) {
 	</a>
 
 	<script>
-		maingronSharetoConfables.push(
-			{
-				"enable": "<?php echo $args['enable'] ?>",
-				"title": "<?php echo $args['title'] ?>",
-				"platform_link_template": "<?php echo $args['platform_link_template'] ?>",
-				"key": "<?php echo $args['key'] ?>",
-				"icon": "<?php echo $args['icon'] ?>",
-				"window_x": "<?php echo $args['window_x'] ?>",
-				"window_y": "<?php echo $args['window_y'] ?>",
-			}
-		);
+		maingronSharetoConfables.push({
+			"enable": true,
+			"title": "<?php echo $args['title'] ?>",
+			"platform_link_template": "<?php echo $args['platform_link_template'] ?>",
+			"key": "<?php echo $args['key'] ?>",
+			"icon": "<?php echo $args['icon'] ?>",
+			"window_x": "<?php echo $args['window_x'] ?>",
+			"window_y": "<?php echo $args['window_y'] ?>",
+		});
 
 		$('#tweet_body').keypress(function(){
 			let shortUrl = encodeURIComponent( document.querySelector('#copylink').value );
@@ -362,7 +360,7 @@ function maingron_shareto_confable_shareto_javascript($args) {
 function maingron_shareto_confable_shareto_custom( $shareName, $args ) {
 	$myMainKey = 'shareto_' . $shareName;
 	maingron_shareto_confable_shareto_javascript([
-		'enable' => maingron_shareto_confable_get_setting($myMainKey . '_enable', false),
+		'enable' => true,
 		'title' => maingron_shareto_confable_get_setting($myMainKey . '_title', 'Share to' . ($shareName ?? '???')),
 		'key' => 'maingron_shareto_confable_' . $myMainKey,
 		'platform_link_template' => maingron_shareto_confable_get_setting($myMainKey . '_platform_link_template', YOURLS_SITE . "/%shortUrl%+"),
@@ -372,7 +370,7 @@ function maingron_shareto_confable_shareto_custom( $shareName, $args ) {
 
 function maingron_shareto_confable_shareto_qr($args) {
 	maingron_shareto_confable_shareto_javascript([
-		'enable' => maingron_shareto_confable_get_setting('shareto_qr_enable'),
+		'enable' => true,
 		'title' => maingron_shareto_confable_get_setting('shareto_qr_title'),
 		'key' => 'maingron_shareto_confable_shareto_qr',
 		'platform_link_template' => maingron_shareto_confable_get_setting('shareto_qr_platform_link_template', 'https://api.qrserver.com/v1/create-qr-code/?data=%shortUrl%&size=%window_x%x%window_y%'),
@@ -395,8 +393,8 @@ function maingron_shareto_confable_shareto_whatsapp( $args ) {
 }
 
 function maingron_shareto_confable_shareto_email( $args ) {
-		maingron_shareto_confable_shareto_javascript([
-		'enable' => maingron_shareto_confable_get_setting('shareto_email_enable', false),
+	maingron_shareto_confable_shareto_javascript([
+		'enable' => true,
 		'title' => maingron_shareto_confable_get_setting('shareto_email_title', 'Email'),
 		'key' => 'maingron_shareto_confable_shareto_email',
 		'platform_link_template' => maingron_shareto_confable_get_setting('shareto_email_platform_link_template', 'mailto:?subject=%title%&body=%shortUrl%'),
