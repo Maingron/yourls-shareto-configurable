@@ -12,7 +12,6 @@
     ],
     "require": {
         "php": ">=8.0",
-        "yourls/yourls": ">=1.9",
         "yourls/composer-installer": "*"
     }
 }
