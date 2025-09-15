@@ -40,31 +40,31 @@ function maingron_shareto_confable_get_setting( string $setting, $fallback = nul
 	$defaults = [
 		'shareto_disable' => false,
 		'shareto_email_enable' => true,
-		'shareto_email_title' => 'E-mail',
+		'shareto_email_title' => yourls__('E-Mail', 'maingron_shareto_confable'),
 		'shareto_email_platform_link_template' => 'mailto:?subject=%title%&body=%shortUrl%',
 		'shareto_email_icon' => YOURLS_PLUGINURL . '/' . yourls_plugin_basename(__DIR__) . "/img/email.png",
 		'shareto_qr_enable' => true,
-		'shareto_qr_title' => 'QR Code',
+		'shareto_qr_title' => yourls__('QR Code', 'maingron_shareto_confable'),
 		'shareto_qr_platform_link_template' => 'https://api.qrserver.com/v1/create-qr-code/?data=%shortUrl%&size=%window_x%x%window_y%',
 		'shareto_qr_icon' => YOURLS_PLUGINURL . '/' . yourls_plugin_basename(__DIR__) . "/img/qr_code.png",
 		'shareto_qr_window_x' => 350,
 		'shareto_qr_window_y' => 350,
 		'shareto_linkedin_enable' => false,
-		'shareto_linkedin_title' => 'LinkedIn',
+		'shareto_linkedin_title' => yourls__('LinkedIn', 'maingron_shareto_confable'),
 		'shareto_linkedin_platform_link_template' => 'https://www.linkedin.com/sharing/share-offsite/?url=%shortUrl%',
 		'shareto_linkedin_icon' => YOURLS_PLUGINURL . '/' . yourls_plugin_basename(__DIR__) . "/img/linkedin.png",
 		'shareto_tumblr_enable' => false,
-		'shareto_tumblr_title' => 'Tumblr',
+		'shareto_tumblr_title' => yourls__('Tumblr', 'maingron_shareto_confable'),
 		'shareto_tumblr_platform_link_template' => 'https://www.tumblr.com/widgets/share/tool?canonicalUrl=%shortUrl%&title=%title%',
 		'shareto_tumblr_icon' => YOURLS_PLUGINURL . '/' . yourls_plugin_basename(__DIR__) . "/img/tumblr.svg",
 		'shareto_whatsapp_enable' => false,
-		'shareto_whatsapp_title' => 'WhatsApp',
+		'shareto_whatsapp_title' => yourls__('WhatsApp', 'maingron_shareto_confable'),
 		'shareto_whatsapp_platform_link_template' => 'https://api.whatsapp.com/send?text=%shortUrl%',
 		'shareto_whatsapp_icon' => YOURLS_PLUGINURL . '/' . yourls_plugin_basename(__DIR__) . "/img/whatsapp.svg",
 	];
 	foreach(["custom1", "custom2", "custom3", "custom4", "custom5"] as $customShare) {
 		$defaults['shareto_' . $customShare . '_enable'] = false;
-		$defaults['shareto_' . $customShare . '_title'] = 'Custom Title';
+		$defaults['shareto_' . $customShare . '_title'] = yourls__('Custom Title', 'maingron_shareto_confable');
 		$defaults['shareto_' . $customShare . '_platform_link_template'] = YOURLS_SITE . "/%shortUrl%+";
 		$defaults['shareto_' . $customShare . '_icon'] = YOURLS_PLUGINURL . '/' . yourls_plugin_basename(__DIR__) . "/img/transparent.png";
 		$defaults['shareto_' . $customShare . '_window_x'] = '';
@@ -93,7 +93,17 @@ function maingron_shareto_confable_add_settings() {
 }
 
 function maingron_shareto_confable_settings_page() {
-	$maingron_shareto_custom_shares = ['shareto_qr', 'shareto_email', 'shareto_linkedin', 'shareto_whatsapp', 'shareto_tumblr', 'shareto_custom1', 'shareto_custom2', 'shareto_custom3', 'shareto_custom4'];
+	$maingron_shareto_custom_shares = [
+		'shareto_qr' => yourls__("QR Code", 'maingron_shareto_confable'),
+		'shareto_email' => yourls__("E-Mail", 'maingron_shareto_confable'),
+		'shareto_linkedin' => yourls__("LinkedIn", 'maingron_shareto_confable'),
+		'shareto_whatsapp' => yourls__("WhatsApp", 'maingron_shareto_confable'),
+		'shareto_tumblr' => yourls__("Tumblr", 'maingron_shareto_confable'),
+		'shareto_custom1' => yourls__("Custom 1", 'maingron_shareto_confable'),
+		'shareto_custom2' => yourls__("Custom 2", 'maingron_shareto_confable'),
+		'shareto_custom3' => yourls__("Custom 3", 'maingron_shareto_confable'),
+		'shareto_custom4' => yourls__("Custom 4", 'maingron_shareto_confable'),
+	];
 
 	// Check if form was submitted
 	if( isset( $_POST['shareto_timestamp'] ) ) {
@@ -109,7 +119,7 @@ function maingron_shareto_confable_settings_page() {
 	$shareto_disable_twitter = maingron_shareto_confable_get_setting('shareto_disable_twitter') ? 'checked' : '';
 	$shareto_disable_facebook = maingron_shareto_confable_get_setting('shareto_disable_facebook') ? 'checked' : '';
 
-	foreach($maingron_shareto_custom_shares as $st_name) {
+	foreach($maingron_shareto_custom_shares as $st_name => $st_name_human) {
 		${$st_name . '_enable'} = maingron_shareto_confable_get_setting($st_name . '_enable') ? 'checked' : '';
 		${$st_name . '_title'} = maingron_shareto_confable_get_setting($st_name . '_title', 'Title');
 		${$st_name . '_platform_link_template'} = maingron_shareto_confable_get_setting($st_name . '_platform_link_template', YOURLS_SITE . "/%shortUrl%+") ?? '';
@@ -176,9 +186,9 @@ function maingron_shareto_confable_settings_page() {
 				</div>
 			</details>
 
-		<?php foreach($maingron_shareto_custom_shares as $st_name): ?>
+		<?php foreach($maingron_shareto_custom_shares as $st_name => $st_name_human): ?>
 			<fieldset>
-				<legend><?php echo str_replace('shareto_', '', $st_name) ?></legend>
+				<legend><?php echo $st_name_human ?></legend>
 				<label>
 					<?php yourls_e('Enable', 'maingron_shareto_confable') ?>
 					<input type='checkbox' name="<?php echo $st_name ?>_enable" <?php echo ${$st_name . '_enable'} ?> />

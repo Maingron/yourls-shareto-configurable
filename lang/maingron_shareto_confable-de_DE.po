@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2025-09-15 15:43+0200\n"
-"PO-Revision-Date: 2025-09-15 15:44+0200\n"
+"POT-Creation-Date: 2025-09-15 16:12+0200\n"
+"PO-Revision-Date: 2025-09-15 16:13+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -15,78 +15,118 @@ msgstr ""
 "yourls__;yourls_e;yourls_s;yourls_se;yourls_esc_attr__;yourls_esc_html__;yourls_x;yourls_ex;yourls_esc_attr_x;yourls_esc_html_x;yourls_n:1,2;yourls_nx:1,2;yourls_n_noop:1,2;yourls_nx_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: plugin.php:124
+#: plugin.php:43 plugin.php:98
+msgid "E-Mail"
+msgstr "E-Mail"
+
+#: plugin.php:47 plugin.php:97
+msgid "QR Code"
+msgstr "QR-Code"
+
+#: plugin.php:53 plugin.php:99
+msgid "LinkedIn"
+msgstr "LinkedIn"
+
+#: plugin.php:57 plugin.php:101
+msgid "Tumblr"
+msgstr "Tumblr"
+
+#: plugin.php:61 plugin.php:100
+msgid "WhatsApp"
+msgstr "WhatsApp"
+
+#: plugin.php:67
+msgid "Custom Title"
+msgstr "Benutzerdefinierter Titel"
+
+#: plugin.php:102
+msgid "Custom 1"
+msgstr "Benutzerdefiniert 1"
+
+#: plugin.php:103
+msgid "Custom 2"
+msgstr "Benutzerdefiniert 2"
+
+#: plugin.php:104
+msgid "Custom 3"
+msgstr "Benutzerdefiniert 3"
+
+#: plugin.php:105
+msgid "Custom 4"
+msgstr "Benutzerdefiniert 4"
+
+#: plugin.php:134
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: plugin.php:142
+#: plugin.php:152
 msgid "General"
 msgstr "Allgemein"
 
-#: plugin.php:144
+#: plugin.php:154
 msgid "Disable Share feature entirely"
 msgstr "Share-Features komplett deaktivieren"
 
-#: plugin.php:150
+#: plugin.php:160
 msgid "Twitter"
 msgstr "Twitter"
 
-#: plugin.php:152 plugin.php:160
+#: plugin.php:162 plugin.php:170
 msgid "Disable"
 msgstr "Deaktivieren"
 
-#: plugin.php:158
+#: plugin.php:168
 msgid "Facebook"
 msgstr "Facebook"
 
-#: plugin.php:167
+#: plugin.php:177
 msgid "Variables"
 msgstr "Variablen"
 
-#: plugin.php:170
+#: plugin.php:180
 msgid "The shortened URL"
 msgstr "Gekürzte URL"
 
-#: plugin.php:171
+#: plugin.php:181
 msgid "The original URL"
 msgstr "Ursprüngliche URL"
 
-#: plugin.php:172
+#: plugin.php:182
 msgid "The title of the link (if any)"
 msgstr "Linktitel (Wenn gewünscht)"
 
-#: plugin.php:173
+#: plugin.php:183
 msgid "Width of the popup window (if any)"
 msgstr "Breite des Popup-Fensters (Wenn gewünscht)"
 
-#: plugin.php:174
+#: plugin.php:184
 msgid "Height of the popup window (if any)"
 msgstr "Höhe des Popup-Fensters (Wenn gewünscht)"
 
-#: plugin.php:183
+#: plugin.php:193
 msgid "Enable"
 msgstr "Aktivieren"
 
-#: plugin.php:187
+#: plugin.php:197
 msgid "Title"
 msgstr "Titel"
 
-#: plugin.php:191
+#: plugin.php:201
 msgid "Platform Link Template"
 msgstr "Link-Vorlage der Plattform"
 
-#: plugin.php:195
+#: plugin.php:205
 msgid "Icon URL"
 msgstr "Icon URL"
 
-#: plugin.php:199
+#: plugin.php:209
 msgid "Popup Window Width (px)"
 msgstr "Breite des Popup Fensters (px)"
 
-#: plugin.php:203
+#: plugin.php:213
 msgid "Popup Window Height (px)"
 msgstr "Höhe des Popup Fensters (px)"
 
-#: plugin.php:208
+#: plugin.php:218
 msgid "Save"
 msgstr "Speichern"
