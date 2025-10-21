@@ -1,0 +1,133 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2025-09-15 16:12+0200\n"
+"PO-Revision-Date: 2025-10-21 12:00+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: nb_NO\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.7\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: "
+"yourls__;yourls_e;yourls_s;yourls_se;yourls_esc_attr__;yourls_esc_html__;yourls_x;yourls_ex;yourls_esc_attr_x;yourls_esc_html_x;yourls_n:1,2;yourls_nx:1,2;yourls_n_noop:1,2;yourls_nx_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: plugin.php:43 plugin.php:98
+msgid "E-Mail"
+msgstr "E-post"
+
+#: plugin.php:47 plugin.php:97
+msgid "QR Code"
+msgstr "QR-kode"
+
+#: plugin.php:53 plugin.php:99
+msgid "LinkedIn"
+msgstr "LinkedIn"
+
+#: plugin.php:57 plugin.php:101
+msgid "Tumblr"
+msgstr "Tumblr"
+
+#: plugin.php:61 plugin.php:100
+msgid "WhatsApp"
+msgstr "WhatsApp"
+
+#: plugin.php:67
+msgid "Custom Title"
+msgstr "Egendefinert tittel"
+
+#: plugin.php:102
+msgid "Custom 1"
+msgstr "Egendefinert 1"
+
+#: plugin.php:103
+msgid "Custom 2"
+msgstr "Egendefinert 2"
+
+#: plugin.php:104
+msgid "Custom 3"
+msgstr "Egendefinert 3"
+
+#: plugin.php:105
+msgid "Custom 4"
+msgstr "Egendefinert 4"
+
+#: plugin.php:134
+msgid "Settings"
+msgstr "Innstillinger"
+
+#: plugin.php:152
+msgid "General"
+msgstr "Generelt"
+
+#: plugin.php:154
+msgid "Disable Share feature entirely"
+msgstr "Deaktiver delingsfunksjon fullstendig"
+
+#: plugin.php:160
+msgid "Twitter"
+msgstr "Twitter"
+
+#: plugin.php:162 plugin.php:170
+msgid "Disable"
+msgstr "Deaktiver"
+
+#: plugin.php:168
+msgid "Facebook"
+msgstr "Facebook"
+
+#: plugin.php:177
+msgid "Variables"
+msgstr "Variabler"
+
+#: plugin.php:180
+msgid "The shortened URL"
+msgstr "Den forkortede URL-en"
+
+#: plugin.php:181
+msgid "The original URL"
+msgstr "Den opprinnelige URL-en"
+
+#: plugin.php:182
+msgid "The title of the link (if any)"
+msgstr "Tittelen på lenken (hvis aktuelt)"
+
+#: plugin.php:183
+msgid "Width of the popup window (if any)"
+msgstr "Bredde på popup-vinduet (hvis aktuelt)"
+
+#: plugin.php:184
+msgid "Height of the popup window (if any)"
+msgstr "Høyde på popup-vinduet (hvis aktuelt)"
+
+#: plugin.php:193
+msgid "Enable"
+msgstr "Aktiver"
+
+#: plugin.php:197
+msgid "Title"
+msgstr "Tittel"
+
+#: plugin.php:201
+msgid "Platform Link Template"
+msgstr "Plattform lenkemal"
+
+#: plugin.php:205
+msgid "Icon URL"
+msgstr "Ikon-URL"
+
+#: plugin.php:209
+msgid "Popup Window Width (px)"
+msgstr "Popup-vinduets bredde (px)"
+
+#: plugin.php:213
+msgid "Popup Window Height (px)"
+msgstr "Popup-vinduets høyde (px)"
+
+#: plugin.php:218
+msgid "Save"
+msgstr "Lagre"
+
