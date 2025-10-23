@@ -323,7 +323,8 @@ function maingron_shareto_confable_shareto_javascript($args) {
 			"window_y": "<?php echo $args['window_y'] ?>",
 		});
 
-		$('#tweet_body').keypress(function(){
+		// Function to initialize/update share buttons
+		function initShareButtons() {
 			let shortUrl = encodeURIComponent( document.querySelector('#copylink').value );
 			let longUrl = document.querySelector("#origlink").value;
 			let titleLink = document.querySelector("#titlelink").value;
@@ -362,6 +363,11 @@ function maingron_shareto_confable_shareto_javascript($args) {
 					}
 				}
 			});
+		}
+
+		// Update when tweet body changes
+		$('#tweet_body').keypress(function(){
+			initShareButtons();
 		});
 	</script>
 	<?php
