@@ -365,10 +365,61 @@ function maingron_shareto_confable_shareto_javascript($args) {
 			});
 		}
 
+		$("#copylink")
+		// Keep link in sync in case someone was to edit the link for some bizarre reason lol
+			.on("keydown", (e) => {
+				if(!e.target.originalValue) {
+					e.target.originalValue = e.target.value;
+					e.target.initialValue = e.target.value;
+				}
+			})
+			.on("keyup", (e) => {
+				if(e.target.value.indexOf("://") === -1) {
+					e.target.value = e.target.initialValue;
+					event.preventDefault();
+					return false;
+				}
+				let originalValue = e.target.originalValue ?? "";
+				let tweetBodyVal = $("#tweet_body").val();
+				let newTweetBodyVal = tweetBodyVal.replace(originalValue, e.target.value);
+				$("#tweet_body").val(newTweetBodyVal);
+				e.target.originalValue = e.target.value;
+				$('#tweet_body').trigger("keypress");
+			}
+		);
+
+		$("#tweet_body")
+		// Keep tweet body in sync - people probably want to edit their text
+			.on("keydown", (e) => {
+				if(!e.target.originalValue) {
+					e.target.originalValue = e.target.value;
+				}
+			})
+			.on("keyup", (e) => {
+				let linkVal = $("#copylink").val();
+				let myFullVal = e.target.value;
+				let myValMinusLink = myFullVal.replace(linkVal, "");
+				$("#titlelink").val(myValMinusLink.trim());
+				
+				if(e.target.value.indexOf($("#copylink").val()) === -1) {
+					event.preventDefault();
+					e.target.value = e.target.originalValue;
+					$("#copylink").focus();
+					return false;
+				} else {
+					e.target.originalValue = e.target.value;
+				}
+			}
+		);
+
 		// Update when tweet body changes
-		$('#tweet_body').keypress(function(){
-			initShareButtons();
-		});
+		$('#tweet_body')
+			.on("keypress", function() {
+				setTimeout(() => {
+					// Not sure why, but YOURLS seems to have this wrong already and works with a delay instead of keyup. Thus we have to do this too, unfortunately.
+					initShareButtons();
+				}, 100);
+			});
 	</script>
 	<?php
 }
