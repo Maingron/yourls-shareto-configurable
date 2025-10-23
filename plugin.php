@@ -269,59 +269,6 @@ function maingron_shareto_confable_shareto_init( $args ) {
 
 	<script>
 		var maingronSharetoConfables = [];
-	</script>
-
-	<style>
-		#share_links a.maingron_shareto_confable_link {
-			background-color: transparent;
-			background-image: var(--linkicon);
-			background-repeat: no-repeat;
-			background-size: contain;
-		}
-	</style>
-
-	<?php foreach(['twitter' => 'tw', 'facebook' => 'fb'] as $k => $v): ?>
-		<?php if(maingron_shareto_confable_get_setting('shareto_disable_' . $k, false )): ?>
-			<script>
-				$("#share_links #share_<?php echo $v; ?>").remove();
-			</script>
-		<?php endif; ?>
-	<?php endforeach; ?>
-
-	<?php
-}
-
-function maingron_shareto_confable_shareto_javascript($args) {
-	if(!$args['enable'] || yourls_get_option('shareto_disable', false)) {
-		return;
-	}
-
-	$args = array_merge([
-		'enable' => false,
-		'title' => 'Share to ???',
-		'key' => 'maingron_shareto_confable_shareto_undefined',
-		'platform_link_template' => '#',
-		'icon' => YOURLS_PLUGINURL . '/' . yourls_plugin_basename(__DIR__) . "/img/transparent.png",
-		'window_x' => '',
-		'window_y' => '',
-	], $args);
-
-	?>
-
-	<a id="<?php echo $args['key'] ?>" href="#" title="<?php echo $args['title'] ?>">
-		<?php echo $args['title'] ?>
-	</a>
-
-	<script>
-		maingronSharetoConfables.push({
-			"enable": true,
-			"title": "<?php echo $args['title'] ?>",
-			"platform_link_template": "<?php echo $args['platform_link_template'] ?>",
-			"key": "<?php echo $args['key'] ?>",
-			"icon": "<?php echo $args['icon'] ?>",
-			"window_x": "<?php echo $args['window_x'] ?>",
-			"window_y": "<?php echo $args['window_y'] ?>",
-		});
 
 		// Function to initialize/update share buttons
 		function initShareButtons() {
@@ -385,8 +332,7 @@ function maingron_shareto_confable_shareto_javascript($args) {
 				$("#tweet_body").val(newTweetBodyVal);
 				e.target.originalValue = e.target.value;
 				$('#tweet_body').trigger("keypress");
-			}
-		);
+			});
 
 		$("#tweet_body")
 		// Keep tweet body in sync - people probably want to edit their text
@@ -394,6 +340,13 @@ function maingron_shareto_confable_shareto_javascript($args) {
 				if(!e.target.originalValue) {
 					e.target.originalValue = e.target.value;
 				}
+			})
+			.on("keypress", function(e) {
+			// Update when tweet body changes
+				setTimeout(() => {
+					// Not sure why, but YOURLS seems to have this wrong already and works with a delay instead of keyup. Thus we have to do this too, unfortunately.
+					initShareButtons();
+				}, 100);
 			})
 			.on("keyup", (e) => {
 				let linkVal = $("#copylink").val();
@@ -409,17 +362,60 @@ function maingron_shareto_confable_shareto_javascript($args) {
 				} else {
 					e.target.originalValue = e.target.value;
 				}
-			}
-		);
-
-		// Update when tweet body changes
-		$('#tweet_body')
-			.on("keypress", function() {
-				setTimeout(() => {
-					// Not sure why, but YOURLS seems to have this wrong already and works with a delay instead of keyup. Thus we have to do this too, unfortunately.
-					initShareButtons();
-				}, 100);
 			});
+	</script>
+
+	<style>
+		#share_links a.maingron_shareto_confable_link {
+			background-color: transparent;
+			background-image: var(--linkicon);
+			background-repeat: no-repeat;
+			background-size: contain;
+		}
+	</style>
+
+	<?php foreach(['twitter' => 'tw', 'facebook' => 'fb'] as $k => $v): ?>
+		<?php if(maingron_shareto_confable_get_setting('shareto_disable_' . $k, false )): ?>
+			<script>
+				$("#share_links #share_<?php echo $v; ?>").remove();
+			</script>
+		<?php endif; ?>
+	<?php endforeach; ?>
+
+	<?php
+}
+
+function maingron_shareto_confable_shareto_javascript($args) {
+	if(!$args['enable'] || yourls_get_option('shareto_disable', false)) {
+		return;
+	}
+
+	$args = array_merge([
+		'enable' => false,
+		'title' => 'Share to ???',
+		'key' => 'maingron_shareto_confable_shareto_undefined',
+		'platform_link_template' => '#',
+		'icon' => YOURLS_PLUGINURL . '/' . yourls_plugin_basename(__DIR__) . "/img/transparent.png",
+		'window_x' => '',
+		'window_y' => '',
+	], $args);
+
+	?>
+
+	<a id="<?php echo $args['key'] ?>" href="#" title="<?php echo $args['title'] ?>">
+		<?php echo $args['title'] ?>
+	</a>
+
+	<script>
+		maingronSharetoConfables.push({
+			"enable": true,
+			"title": "<?php echo $args['title'] ?>",
+			"platform_link_template": "<?php echo $args['platform_link_template'] ?>",
+			"key": "<?php echo $args['key'] ?>",
+			"icon": "<?php echo $args['icon'] ?>",
+			"window_x": "<?php echo $args['window_x'] ?>",
+			"window_y": "<?php echo $args['window_y'] ?>",
+		});
 	</script>
 	<?php
 }
