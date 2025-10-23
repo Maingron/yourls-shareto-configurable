@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2025-09-15 16:12+0200\n"
-"PO-Revision-Date: 2025-09-15 16:19+0200\n"
+"POT-Creation-Date: 2025-10-23 17:06+0200\n"
+"PO-Revision-Date: 2025-10-23 17:07+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: en\n"
+"Language: en_GB\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.7\n"
+"X-Generator: Poedit 3.8\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: "
 "yourls__;yourls_e;yourls_s;yourls_se;yourls_esc_attr__;yourls_esc_html__;yourls_x;yourls_ex;yourls_esc_attr_x;yourls_esc_html_x;yourls_n:1,2;yourls_nx:1,2;yourls_n_noop:1,2;yourls_nx_noop:1,2\n"
@@ -96,37 +96,45 @@ msgid "The title of the link (if any)"
 msgstr "The title of the link (if any)"
 
 #: plugin.php:183
+msgid ""
+"Content of the share text box (Same as %title%, but link doesn't get removed "
+"from the message)"
+msgstr ""
+"Content of the share text box (Same as %title%, but link doesn't get removed "
+"from the message)"
+
+#: plugin.php:184
 msgid "Width of the popup window (if any)"
 msgstr "Width of the popup window (if any)"
 
-#: plugin.php:184
+#: plugin.php:185
 msgid "Height of the popup window (if any)"
 msgstr "Height of the popup window (if any)"
 
-#: plugin.php:193
+#: plugin.php:194
 msgid "Enable"
 msgstr "Enable"
 
-#: plugin.php:197
+#: plugin.php:198
 msgid "Title"
 msgstr "Title"
 
-#: plugin.php:201
+#: plugin.php:202
 msgid "Platform Link Template"
 msgstr "Platform Link Template"
 
-#: plugin.php:205
+#: plugin.php:206
 msgid "Icon URL"
 msgstr "Icon URL"
 
-#: plugin.php:209
+#: plugin.php:210
 msgid "Popup Window Width (px)"
 msgstr "Popup Window Width (px)"
 
-#: plugin.php:213
+#: plugin.php:214
 msgid "Popup Window Height (px)"
 msgstr "Popup Window Height (px)"
 
-#: plugin.php:218
+#: plugin.php:219
 msgid "Save"
 msgstr "Save"

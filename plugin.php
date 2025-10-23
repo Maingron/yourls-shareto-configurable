@@ -180,6 +180,7 @@ function maingron_shareto_confable_settings_page() {
 						<code>%shortUrl%</code> - <?php yourls_e('The shortened URL', 'maingron_shareto_confable') ?><br>
 						<code>%longUrl%</code> - <?php yourls_e('The original URL', 'maingron_shareto_confable') ?><br>
 						<code>%title%</code> - <?php yourls_e('The title of the link (if any)', 'maingron_shareto_confable') ?><br>
+						<code>%message%</code> - <?php yourls_e('Content of the share text box (Same as %title%, but link doesn\'t get removed from the message)', 'maingron_shareto_confable') ?><br>
 						<code>%window_x%</code> - <?php yourls_e('Width of the popup window (if any)', 'maingron_shareto_confable') ?><br>
 						<code>%window_y%</code> - <?php yourls_e('Height of the popup window (if any)', 'maingron_shareto_confable') ?><br>
 					</p>
@@ -275,12 +276,14 @@ function maingron_shareto_confable_shareto_init( $args ) {
 			let shortUrl = encodeURIComponent( document.querySelector('#copylink').value );
 			let longUrl = document.querySelector("#origlink").value;
 			let titleLink = document.querySelector("#titlelink").value;
+			let tweetBody = document.querySelector("#tweet_body").value;
 			maingronSharetoConfables.forEach((confable) => {
 				if(confable['enable']) {
 					let parsedPlatformLink = confable['platform_link_template']
 						.replace('%shortUrl%', shortUrl)
 						.replace('%longUrl%', longUrl)
 						.replace('%title%', titleLink)
+						.replace('%message%', tweetBody ?? titleLink)
 						.replace('%window_x%', confable['window_x'] ?? '')
 						.replace('%window_y%', confable['window_y'] ?? '');
 
