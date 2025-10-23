@@ -365,12 +365,7 @@ function maingron_shareto_confable_shareto_javascript($args) {
 			});
 		}
 
-		// Initialize on page load
-		$(document).ready(function() {
-			initShareButtons();
-		});
-
-		// Also update when tweet body changes
+		// Update when tweet body changes
 		$('#tweet_body').keypress(function(){
 			initShareButtons();
 		});
