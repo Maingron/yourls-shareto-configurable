@@ -61,7 +61,8 @@ This plugin **replaces** the following YOURLS plugins or functionalities:
 
 ## Contributing
 
-Contributions are welcome! Feel free to submit issues or pull requests to improve this plugin.
+Contributions are much appreciated! Feel welcome to submit issues or pull requests.  
+If your PR improves the plugin, either by adding or fixing code, or by adding a new translation, that's great!
 
 ## License
 
