@@ -8,7 +8,9 @@ Plugin Page: [Maingron/yourls-shareto-configurable](https://github.com/Maingron/
 
 ## Description
 
-**Share to - Configurable** is a [YOURLS](https://yourls.org/) plugin that allows you to add customizable sharing options to your YOURLS installation. Share your short URLs to various platforms like LinkedIn, Tumblr, and more, with configurable settings for each platform.
+**Share to - Configurable** is a [YOURLS](https://yourls.org/) plugin that allows you to add customizable sharing options to your YOURLS installation. Share your short URLs to various platforms like LinkedIn, Tumblr, and more, with configurable settings for each platform.  
+
+This plugin is also linked in the plugin section of the official [YOURLS/awesome repo](https://github.com/YOURLS/awesome?tab=readme-ov-file#s).
 
 ## Features
 
@@ -63,6 +65,11 @@ This plugin **replaces** the following YOURLS plugins or functionalities:
 
 Contributions are much appreciated! Feel welcome to submit issues or pull requests.  
 If your PR improves the plugin, either by adding or fixing code, or by adding a new translation, that's great!
+
+### Support
+
+If you find this plugin useful, please consider sharing it on social media :)  
+Of course, you can also always [donate](https://maingron.com/donate) or contribute to the codebase.
 
 ## License
 
