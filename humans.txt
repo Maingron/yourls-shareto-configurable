@@ -1,0 +1,22 @@
+/* TEAM */
+
+Creator: Maingron
+Site: https://maingron.com
+Contact: r@maingron.com
+From: Internet
+
+/* THANKS */
+
+YOURLS: https://yourls.org/
+ozh: https://github.com/ozh
+peterberbec: https://github.com/peterberbec
+wissehes: https://github.com/wissehes
+popnt: https://github.com/popnt
+seandrickson: https://github.com/seandrickson
+
+/* SITE */
+
+Last update: 2025/11/29
+Software: YOURLS
+Language: PHP
+Standards: humanstxt.org
