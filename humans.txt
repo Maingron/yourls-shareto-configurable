@@ -1,0 +1,14 @@
+/* PROJECT */
+    GitHub: https://github.com/Maingron/yourls-shareto-configurable
+    Type: Plugin
+    For: https://github.com/YOURLS/YOURLS
+
+/* TEAM */
+    Developer: Maingron (Robin)
+    GitHub: https://github.com/Maingron
+    Website: https://maingron.com
+
+/* CONTRIBUTORS */
+    Name: Master3395
+    GitHub: https://github.com/master3395
+    
