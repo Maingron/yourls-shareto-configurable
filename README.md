@@ -1,10 +1,18 @@
-# Share to - Configurable
+<h1 align="center">Share to - Configurable</h1>
+<p align="center">YOURLS Plugin</p>
+
+<p align="center">
+<img align="center" height="100" src="logo.png">
+</p>
+
+<p align="center">
+Project Page:
+<a href="https://github.com/Maingron/yourls-shareto-configurable" title="GitHub Project Page">GitHub</a>
+•
+<a href="https://gitlab.com/Maingron/yourls-shareto-configurable" title="GitLab Project Page">GitLab</a>
+</p>
 
 [![YOURLS Plugin](https://img.shields.io/badge/YOURLS-Plugin-brightgreen)](https://yourls.org/)
-
-![](logo.png)
-
-Plugin Page: [Maingron/yourls-shareto-configurable](https://github.com/Maingron/yourls-shareto-configurable)
 
 ## Description
 
